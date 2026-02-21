@@ -1,0 +1,63 @@
+<section class="app-container ">
+
+  <div class="trading-card">
+
+    <!-- HEADER -->
+    <div class="card-header">
+      <span class="title">AI Trading Capital</span>
+    </div>
+
+    <!-- BALANCE -->
+    <div class="balance">
+      <span class="amount notranslate">${{quickNav.storeData.store['PLANHISTORY']?.capital || 0 |number:"1.2-2"}}</span>
+      <span class="percent notranslate">{{quickNav.storeData.store['PLANHISTORY']?.daily_profit || 0 }}%</span>
+    </div>
+
+    <hr>
+
+    <!-- PROFITS -->
+    <div class="profits">
+      <div>
+        <p class="label">Today's Profit</p>
+        <p class="value notranslate">${{quickNav.storeData.store['PLANHISTORY']?.total_profit || 0 |number:"1.2-2"}}</p>
+      </div>
+
+      <div>
+        <p class="label">Total Profit</p>
+        <p class="value notranslate">${{quickNav.storeData.store['PLANHISTORY']?.total_daily_earning || 0 |number:"1.2-2"}}</p>
+      </div>
+    </div>
+
+    <div *ngIf="!['my-plan'].includes(quickNav.storeData.store['pageName'])">
+      <!-- FEATURES -->
+      <div  class="features">
+
+        <div class="feature">
+          <!-- <div class="icon">💳</div> -->
+          <app-ai-icon type="wallet"></app-ai-icon>
+
+          <p>Fund Safety</p>
+        </div>
+
+        <div class="feature">
+          <app-ai-icon type="chart"></app-ai-icon>
+          <p>Stable Returns</p>
+        </div>
+
+        <div class="feature">
+          <app-ai-icon type="document"></app-ai-icon>
+          <p>Easy Operation</p>
+        </div>
+
+      </div>
+
+      <!-- DESCRIPTION -->
+      <p class="description">
+        Automated trading uses computer programs and algorithms to execute strategies...
+        <span class="view-more">View More</span>
+      </p>
+    </div>
+
+
+  </div>
+</section>

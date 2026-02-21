@@ -1,0 +1,160 @@
+balance-card {
+  background: linear-gradient(150deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+  border-radius: 20px;
+  padding: 20px;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  max-width: 100%;
+}
+
+/* TOP */
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.icon {
+  margin-right: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.actions button {
+  height: 34px;
+  /* min-width: 90px; */
+  padding: 0 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;              /* remove extra vertical spacing */
+  display: inline-flex;        /* better than flex here */
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.deposit {
+  /* background: #c8f000; */
+  /* color: #000;
+  border: 1px solid #c8f000; */
+  /* margin-top: 12px; */
+
+}
+
+.withdraw {
+  /* background: transparent;
+  border: 1px solid #aaa;
+  color: #fff; */
+  margin-bottom: -2em;
+}
+
+
+/* AMOUNT */
+.amount-row {
+  margin-top: 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.amount {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.percent {
+  color: #c8f000;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* BOTTOM INFO */
+.bottom-row {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.label {
+  font-size: 11px;
+  color: #bbbbbb;
+  margin-bottom: 4px;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 500;
+}
+/* MOBILE FIX */
+@media (max-width: 768px) {
+
+  .top-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* keep buttons right aligned */
+  }
+
+}
+
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+
+  .top-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .actions {
+    width: 50%;
+    display: grid;
+    justify-content: center;
+    right: 0;
+    /* margin-right: 30px; */
+    position: absolute;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+  }
+
+  .amount {
+      font-size: 25px;
+      font-weight: 800;
+  }
+  .label{
+    font-size: .66rem;
+  }
+
+  .amount-row{
+    margin-bottom:  4em;
+  }
+}

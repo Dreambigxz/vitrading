@@ -1,0 +1,31 @@
+<app-header2></app-header2>
+<app-spinner></app-spinner>
+
+<div class="trade-card">
+
+  <div class="price-section">
+    <h2>{{ price }}</h2>
+    <span [class.red]="change < 0" [class.green]="change >= 0">
+      {{ change |number:"1.2-2"}}%
+    </span>
+  </div>
+
+  <div class="ohlc">
+    <span>Open {{ open }}</span>
+    <span>High {{ high }}</span>
+    <span>Low {{ low }}</span>
+    <span>Close {{ close }}</span>
+  </div>
+
+  <div class="timeframes">
+    <button *ngFor="let tf of timeframes"
+      (click)="loadChart(tf)"
+      [class.active]='tf==activeTimeFrame'
+      >
+      {{ tf }}
+    </button>
+  </div>
+
+  <div id="chartContainer"></div>
+
+</div>

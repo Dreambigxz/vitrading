@@ -1,0 +1,73 @@
+
+
+/* header */
+.card-header .title {
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+/* balance */
+.balance {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.amount {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.percent {
+  color: #a034fa;
+  font-weight: bold;
+}
+
+/* profits section */
+.profits {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.label {
+  opacity: 0.6;
+  font-size: 13px;
+}
+
+.value {
+  font-weight: bold;
+}
+
+/* features */
+.features {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.feature {
+  background: rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 15px;
+  text-align: center;
+  width: 30%;
+}
+
+.feature .icon {
+  font-size: 22px;
+  color: #a034fa;
+  margin-bottom: 8px;
+}
+
+/* description */
+.description {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.view-more {
+  color: #a034fa;
+  cursor: pointer;
+}

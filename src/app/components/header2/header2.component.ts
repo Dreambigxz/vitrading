@@ -52,10 +52,14 @@ export class Header2Component {
     else if(segments.includes("inactive-users")){
       this.pageName='Inactive'
     }
+    else if(segments.includes("vi")){
+      this.pageName='VI Quantitative Trading'
+    }
     else{
       this.pageName=segments.pop() || ''
     }
-     // ?segments.includes("betinfo"): this.pageName=segments.pop() || ''; // 'earnings'
+
+    this.quickNav.storeData.set("pageName", this.pageName)
   }
 
 

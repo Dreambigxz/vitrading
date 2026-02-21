@@ -18,5 +18,8 @@ export class HeaderComponent {
   authService = inject(AuthService)
   quickNav = inject(QuickNavService)
 
+  username = 'Daniel';
+  balance = 2450.75;
+
 
 }

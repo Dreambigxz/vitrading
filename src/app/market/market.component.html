@@ -1,0 +1,109 @@
+<app-spinner></app-spinner>
+
+<div class="trade-container mt-2">
+
+  <!-- TOP CRYPTO CARDS -->
+  <div class="q-market-row">
+
+    <div
+      class="q-market-card"
+      *ngFor="let coin of quickMarkets"
+      [class.positive]="coin.change >= 0"
+      [class.negative]="coin.change < 0"
+      [routerLink]="['/market-details']"
+      [state]="{ coin: coin }"
+      >
+
+      <div class="pair">{{ coin.pair }}</div>
+      <div class="currency">US Dollar</div>
+      <div class="change">
+        {{ coin.change | number:'1.2-2' }}%
+        {{ coin.change >= 0 ? '↗' : '↘' }}
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- MAIN AI CARD -->
+  <div class="ai-card">
+
+    <div class="ai-icon">
+      <strong>VI</strong>
+    </div>
+
+    <p class="small-text">Easy to Operate</p>
+
+    <h2>VI Quantitative Trading</h2>
+
+    <p class="tags">
+      Safe / Stable / Simple
+    </p>
+
+    <button (click)="quickNav.go('vi','createvi')" class="hero__btn create-btn">
+      + Create Trade
+    </button>
+
+  </div>
+
+</div>
+
+
+<div class="market-card ">
+
+  <!-- <div class="header">
+    <span>Market</span>
+    <span class="more">More ›</span>
+  </div> -->
+
+  <div [routerLink]="['/market-details']"
+        [state]="{ coin: coin }"
+
+        class="market-item"
+        *ngFor="let coin of markets">
+
+    <div class="left">
+      <div class="coin-icon">
+        <img class="coin-img" [src]="coin.image" alt="">
+      </div>
+      <div>
+        <div class="symbol">{{ coin.pair }}</div>
+        <div class="usd">US Dollar</div>
+      </div>
+    </div>
+
+        <div class="chart">
+          <canvas
+            baseChart
+            [datasets]="[
+              {
+                data: coin.sparkline,
+                borderWidth: 2,
+                tension: 0.3,
+                borderColor: coin.change >= 0 ? '#16c784' : '#ea3943'
+              }
+            ]"
+            [labels]="coin.sparkline"
+            [type]="'line'"
+            [options]="chartOptions"
+          >
+          </canvas>
+        </div>
+
+    <div class="right">
+      <div class="price">
+        {{ coin.price | number:'1.2-2' }}
+      </div>
+      <div
+        class="change"
+        [class.green]="coin.change >= 0"
+        [class.red]="coin.change < 0">
+        {{ coin.change | number:'1.2-2' }}%
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

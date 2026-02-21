@@ -33,9 +33,15 @@ export class QuickNavService {
 
    modal:any
 
-  go(url: string, queryParams?: any): void {
-   this.router.navigate([url], { queryParams });
-  }
+   go(url: string, fragment?: string, queryParams?: any): void {
+
+     this.router.navigate([url], {
+       queryParams,
+       fragment
+     });
+
+   }
+
 
   alert(message:any,status:string='success'){
     this.toast.show({message,status})

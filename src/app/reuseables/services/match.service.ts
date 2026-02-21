@@ -135,12 +135,19 @@ export class MatchService {
 
     cpg = cpg.slice(0,1)
 
+    console.log({cpg});
+
+
     // Attach company games (secured)
     let ns = await this.notStarted()
+    console.log({ns});
+
     cpg.forEach((element: any) => {
       const match = ns.find(
-        (m: any) => m.fixture.fixture.id == element.fixtureID
+        (m: any) => m.fixture.fixture.id === element.fixtureID
       );
+      console.log({match});
+
       if (match) {
         match['secured'] = true;
         this.CPG.push(match);

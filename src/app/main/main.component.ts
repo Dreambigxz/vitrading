@@ -6,6 +6,7 @@ import { SliderComponent } from "../components/main/slider/slider.component";
 import { UpcommingComponent } from "../components/main/upcomming/upcomming.component";
 import { MatchesComponent } from "../matches/matches.component";
 import { SecuredComponent } from "../components/main/secured/secured.component";
+import { MarketComponent } from "../market/market.component";
 
 import { RequestDataService } from '../reuseables/http-loader/request-data.service';
 import { StoreDataService } from '../reuseables/http-loader/store-data.service';
@@ -18,7 +19,7 @@ import { TruncateCenterPipe } from '../reuseables/pipes/truncate-center.pipe';
 import { CurrencyConverterPipe } from '../reuseables/pipes/currency-converter.pipe';
 
 import { AppDownloadManager } from '../reuseables/services/app-download-manager.service';
-import { FlowComponent } from "../flow/flow.component";
+import { AccountSummaryComponent } from "../account-summary/account-summary.component";
 import { NotificationModalComponent } from '../shared/notification-modal/notification-modal.component';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -27,12 +28,12 @@ import { MatDialog } from '@angular/material/dialog';
   selector: 'app-main',
   imports: [
     HeaderComponent, SliderComponent,
-     UpcommingComponent, MatchesComponent,
-      MenuBottomComponent,
-     CommonModule,
-     QuickNotificationsComponent,
-     SpinnerComponent,SecuredComponent,
-     TruncateCenterPipe, CurrencyConverterPipe, FlowComponent
+    UpcommingComponent, MatchesComponent,
+    MenuBottomComponent,
+    CommonModule,
+    QuickNotificationsComponent,
+    SpinnerComponent,SecuredComponent,MarketComponent,
+    TruncateCenterPipe, CurrencyConverterPipe, AccountSummaryComponent
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
@@ -45,18 +46,13 @@ export class MainComponent {
   quickNav = inject(QuickNavService)
   appManager = inject(AppDownloadManager)
 
-  match = {
-    league: 'Premier League',
-    startDate: '2025-11-20T18:30:00',
-    home: { name: 'Manchester United', logo: 'assets/manu.png' },
-    away: { name: 'Chelsea', logo: 'assets/chelsea.png' }
+  ngOnInit(){
+    if (!this.storeData.get('wallet')) {
+      this.reqServerData.get('dashboard/').subscribe((res)=>{
+        console.log({res});
+
+      })
     }
-
-    // new
-
-    balance = 24500;
-
-
-
+  }
 
 }

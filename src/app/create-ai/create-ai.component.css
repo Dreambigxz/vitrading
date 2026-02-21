@@ -1,0 +1,42 @@
+
+/* ===== FLEX TABLE (TRADE PROPERTIES) ===== */
+
+.trade-properties {
+  /* background: #1e222d; */
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 1px;
+  margin-bottom: 16px;
+  align-items: flex-end;
+}
+
+.row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.row-item:not(:last-child) {
+  border-bottom: 1px solid #2a2f3a;
+}
+
+.label {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+span.value.total{
+    font-size: 25px;
+    color: #b686de;
+}
+span.value.minimum {
+    color: #a199eb;
+    letter-spacing: 1px;
+    font-weight: 900;
+}

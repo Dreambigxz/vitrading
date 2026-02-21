@@ -83,9 +83,9 @@ export const PostHttpInterceptor: HttpInterceptorFn = (req, next) => {
         if (err.status === 401 || err.statusText === 'Unauthorized') {
           authService.logout(true);
         } else {
-          dialog.open(StatusDialogComponent, {
+          !req.url.includes('hideSpinner')?dialog.open(StatusDialogComponent, {
             data: { title: 'Error', message: 'Request not completed, please reload page!', status: 'error' }
-          });
+          }):0;
         }
       }
     }),

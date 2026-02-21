@@ -20,6 +20,10 @@ import { ResetComponent} from "./auth/reset/reset.component";
 import {CreditAgentComponent} from './credit-agent/credit-agent.component'
 import {PaymentConfirmationComponent} from './payment-confirmation/payment-confirmation.component'
 
+import { MarketDetailsComponent } from "./market-details/market-details.component";
+import { CreateAiComponent } from "./create-ai/create-ai.component";
+import { PlansComponent } from "./plans/plans.component";
+
 import { authGuard } from './reuseables/auth/auth.guard';
 
 export const routes: Routes = [
@@ -31,12 +35,7 @@ export const routes: Routes = [
       canActivate: [authGuard]
     },
 
-    {
-      path: 'betinfo/:id',
-      component: BetinfoComponent,
-      title: 'Bet-Info',
-      canActivate: [authGuard]
-    },
+
     {
       path: 'notifications',
       component: NotificationsComponent,
@@ -44,12 +43,6 @@ export const routes: Routes = [
       canActivate: [authGuard]
     },
 
-    {
-      path: 'bethistory',
-      component: BethistoryComponent,
-      title: 'Bet-History',
-      canActivate: [authGuard]
-    },
 
     {
       path: 'wallet/withdraw',
@@ -100,24 +93,38 @@ export const routes: Routes = [
       title: 'Account',
       canActivate: [authGuard]
     },
+
+    { path: 'market-details', component: MarketDetailsComponent },
+
+    // vi routers
     {
-      path: 'matches',
-      component: MatchesComponent,
-      title: 'Matches',
+      path: 'vi',
+      component: CreateAiComponent,
+      title: 'Create-plan',
       canActivate: [authGuard]
+
     },
     {
-    path: 'confirm-payment',
-    component: PaymentConfirmationComponent,
-    title: 'Confirmation',
-    canActivate: [authGuard]
+      path: 'my-plan',
+      component: PlansComponent,
+      title: 'Plan',
+      canActivate: [authGuard]
 
-  },
-  {
-    path: 'credit-agent',
-    component: CreditAgentComponent,
-    title: 'Credit-Agent',
-    canActivate: [authGuard]
+    },
+
+    {
+      path: 'confirm-payment',
+      component: PaymentConfirmationComponent,
+      title: 'Confirmation',
+      canActivate: [authGuard]
+
+    },
+
+    {
+      path: 'credit-agent',
+      component: CreditAgentComponent,
+      title: 'Credit-Agent',
+      canActivate: [authGuard]
 
     },
     {

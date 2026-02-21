@@ -1,0 +1,25 @@
+<div class="icon-wrapper">
+
+  <svg viewBox="0 0 24 24">
+
+    <!-- Circle background -->
+    <circle cx="12" cy="12" r="10" class="icon-circle"></circle>
+
+    <!-- Wallet -->
+    <path *ngIf="type === 'wallet'"
+      d="M7 10h10v6H7z"
+      class="icon-line"></path>
+
+    <!-- Chart -->
+    <path *ngIf="type === 'chart'"
+      d="M6 15l4-4 3 3 5-6"
+      class="icon-line"></path>
+
+    <!-- Document -->
+    <path *ngIf="type === 'document'"
+      d="M9 8h6M9 12h6M9 16h4"
+      class="icon-line"></path>
+
+  </svg>
+
+</div>

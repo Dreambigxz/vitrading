@@ -1,0 +1,51 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
+
+import { RequestDataService } from '../http-loader/request-data.service';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MarketService {
+
+  baseUrl = 'http://127.0.0.1:8000/api';
+
+  constructor(
+    private http: HttpClient,
+    private reqServerData: RequestDataService,
+
+  ) {}
+
+  getMarketData(spinner:any="hideSpinner") {
+    console.log({spinner});
+
+    return this.http
+      .get<any[]>('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&sparkline=true&'+spinner)
+      .pipe(
+        map(data =>
+          data.filter(c =>
+            ['btc','eth','ltc','sol','dot','fil','doge','xrp', 'trx', 'ada', 'link', 'atom', 'xaut']
+            .includes(c.symbol)
+          )
+        )
+      );
+  }
+
+  getSparkline(symbol: string) {
+    return this.http.get<any[]>(
+      `https://data-api.binance.vision/api/v3/klines?symbol=${symbol}&interval=1h&limit=24`
+    );
+  }
+
+  getCandles(symbol:string, interval:string) {
+    // rty
+    return this.http.get<any[]>(
+      `${this.baseUrl}/candles?symbol=${symbol}&interval=${interval}`
+    );
+
+  }
+
+
+}

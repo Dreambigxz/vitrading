@@ -1,0 +1,289 @@
+<app-header2></app-header2>
+<app-spinner></app-spinner>
+
+<app-trading-summary></app-trading-summary>
+
+
+<section class="app-container page-wrapper">
+
+  <div class="tab-pane fade show" id="tab-2" role="tabpanel">
+    <div class="row">
+      <div class="col-12">
+        <!-- profile -->
+        <div class="profile">
+          <!-- tabs nav -->
+          <ul class="nav nav-tabs section__tabs section__tabs--left" id="section__profile-tabs1" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="active" data-bs-toggle="tab" data-bs-target="#tab-f1" type="button" role="tab" aria-controls="tab-f1" aria-selected="true">Active</button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+              <button data-bs-toggle="tab" data-bs-target="#tab-f2" type="button" role="tab" aria-controls="tab-f2" aria-selected="false">Completed</button>
+            </li>
+
+            <!-- <li class="nav-item" role="presentation">
+              <button data-bs-toggle="tab" data-bs-target="#tab-f3" type="button" role="tab" aria-controls="tab-f3" aria-selected="false">New deposit</button>
+            </li> -->
+          </ul>
+          <!-- end tabs nav -->
+
+          <!-- tabs content -->
+          <div class="tab-content">
+            <!-- active -->
+            <div class="tab-pane fade show active" id="tab-f1" role="tabpanel">
+              <div class="row">
+                <div class="col-12">
+                  <!-- deposit -->
+                  <div *ngFor="let plan of quickNav.storeData.store['my_plans']?.active" class="deposit">
+
+                    <div *ngIf="getDailyProfit(plan.plan_id,plan.amount) as info" class="info">
+                      <div class="deposit__name">
+                        <span class="deposit__icon deposit__icon--orange">
+                          <i class="ti ti-database-dollar"></i>
+                        </span>
+                        <h3 class="deposit__title">VI {{plan.plan_id+1}}</h3>
+                      </div>
+
+                      <ul class="deposit__list">
+                        <li>Daily profit ({{info[0]}}%): <b>${{info[1]|number:"1.2-2"}}</b></li>
+                        <li>Opened: <b><small>{{ plan.created_at | date:'dd.MM.yy hh:mm a' }}</small></b></li>
+                        <li *ngIf="getDaysDifference(endDate(plan.created_at,info[4].duration_days)) as r" >Remaining: <b>{{r}} days</b></li>
+                        <li>Earning at: <b><span class="earn-time">{{plan.updated_at | countdown:24|async}}</span></b></li>
+                        <li>Bought: <b>${{plan.amount|number:"1.2-2"}}</b></li>
+                      </ul>
+
+                    <div class="progressbar progressbar--orange">
+                        <div *ngIf="getAccruedProfit(info[4], plan.amount,plan.created_at) as acc" class="accured">
+                          <h3 class="progressbar__title">Accrued:   <b>${{ acc.accrued | number:'1.2-2' }}</b></h3>
+
+                        </div>
+
+                          <div *ngIf="getAccruedPercent(plan.created_at, info[4].duration_days) as progress"
+                               class="progress"
+                               role="progressbar"
+                               aria-valuemin="0"
+                               aria-valuemax="100"
+                               [attr.aria-valuenow]="progress">
+
+                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                 [style.width.%]="progress">
+
+                              <span>{{progress}}%</span>
+
+                            </div>
+                          </div>
+
+                          <!-- <div class="progressbar__values">
+                            <span class="progressbar__value progressbar__value--left">0%</span>
+                            <span class="progressbar__value progressbar__value--right">100%</span>
+                          </div> -->
+                        </div>
+
+                      <div class="deposit__profit">
+                        <span>Total Return</span>
+                        <p class="">${{info[3]}}</p>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div *ngIf="!quickNav.storeData.store['my_plans']?.active.length" class="profile__info">
+                    <p><i class="ti ti-info-circle"></i> No active VI</p>
+                  </div>
+
+
+                  <!-- end deposit -->
+
+                  <!-- deposit -->
+                  <!-- <div class="deposit">
+                    <div class="deposit__name">
+                      <span class="deposit__icon deposit__icon--green">
+                        <i class="ti ti-database-dollar"></i>
+                      </span>
+                      <h3 class="deposit__title">Standard</h3>
+                    </div>
+
+                    <ul class="deposit__list">
+                      <li>Daily profit (%): <b>0.31</b></li>
+                      <li>Was opened: <b>01.10.2023 12:21:30 PM</b></li>
+                      <li>Remaining: <b>14 days</b></li>
+                      <li>Deposit: <b>$800</b></li>
+                    </ul>
+
+                    <div class="progressbar progressbar--green">
+                      <h3 class="progressbar__title">Accrued (%):</h3>
+                      <div class="progress" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 69%"><span>69%</span></div></div>
+                      <div class="progressbar__values">
+                        <span class="progressbar__value progressbar__value--left">0%</span>
+                        <span class="progressbar__value progressbar__value--right">100%</span>
+                      </div>
+                    </div>
+
+                    <div class="deposit__profit">
+                      <span>Profit</span>
+                      <p>$67</p>
+                    </div>
+                  </div> -->
+                  <!-- end deposit -->
+
+                  <!-- deposit -->
+                  <!-- <div class="deposit">
+                    <div class="deposit__name">
+                      <span class="deposit__icon deposit__icon--blue">
+                        <i class="ti ti-database-dollar"></i>
+                      </span>
+                      <h3 class="deposit__title">Lite</h3>
+                    </div>
+
+                    <ul class="deposit__list">
+                      <li>Daily profit (%): <b>0.24</b></li>
+                      <li>Was opened: <b>02.10.2023 12:18:27 PM</b></li>
+                      <li>Remaining: <b>20 days</b></li>
+                      <li>Deposit: <b>$300</b></li>
+                    </ul>
+
+                    <div class="progressbar progressbar--blue">
+                      <h3 class="progressbar__title">Accrued (%):</h3>
+                      <div class="progress" role="progressbar" aria-label="Animated striped" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 33%"><span>33%</span></div></div>
+                      <div class="progressbar__values">
+                        <span class="progressbar__value progressbar__value--left">0%</span>
+                        <span class="progressbar__value progressbar__value--right">100%</span>
+                      </div>
+                    </div>
+
+                    <div class="deposit__profit">
+                      <span>Profit</span>
+                      <p>$49</p>
+                    </div>
+                  </div> -->
+                  <!-- end deposit -->
+                </div>
+              </div>
+            </div>
+            <!-- active -->
+
+            <!-- closed -->
+            <div class="tab-pane fade" id="tab-f2" role="tabpanel">
+              <div class="row">
+                <div class="col-12">
+
+                  <div *ngFor="let plan of quickNav.storeData.store['my_plans']?.completed" class="deposit">
+
+                    <div *ngIf="getDailyProfit(plan.plan_id,plan.amount) as info" class="info">
+                      <div class="deposit__name">
+                        <span class="deposit__icon deposit__icon--green">
+                          <i class="ti ti-database-dollar"></i>
+                        </span>
+                        <h3 class="deposit__title">VI {{plan.plan_id+1}}</h3>
+                      </div>
+
+                      <ul class="deposit__list">
+                        <li>Daily profit ({{info[0]}}%): <b>${{info[1]|number:"1.2-2"}}</b></li>
+                        <li>Opened: <b><span class="t-open">{{ plan.created_at | date:'dd.MM.yy hh:mm a' }}</span></b></li>
+                        <li>Completed: <b><span class="t-closed">{{ endDate(plan.created_at,info[4].duration_days) | date:'dd.MM.yy hh:mm a' }}</span></b></li>
+                        <!-- <li *ngIf="getDaysDifference(endDate(plan.created_at,info[4].duration_days)) as r" >Remaining: <b>{{r}} days</b></li> -->
+                        <!-- <li>Earning at: <b><span class="earn-time">{{plan.updated_at | countdown:24|async}}</span></b></li> -->
+                        <li>Bought: <b>${{plan.amount|number:"1.2-2"}}</b></li>
+                      </ul>
+
+                    <div class="progressbar progressbar--green">
+                        <div *ngIf="getAccruedProfit(info[4], plan.amount,plan.created_at) as acc" class="accured">
+                          <h3 class="progressbar__title">Accrued:   <b>${{ acc.accrued | number:'1.2-2' }}</b></h3>
+
+                        </div>
+
+                          <div *ngIf="getAccruedPercent(plan.created_at, info[4].duration_days) as progress"
+                               class="progress"
+                               role="progressbar"
+                               aria-valuemin="0"
+                               aria-valuemax="100"
+                               [attr.aria-valuenow]="progress">
+
+                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                 [style.width.%]="progress">
+
+                              <span>{{progress}}%</span>
+
+                            </div>
+                          </div>
+
+                          <!-- <div class="progressbar__values">
+                            <span class="progressbar__value progressbar__value--left">0%</span>
+                            <span class="progressbar__value progressbar__value--right">100%</span>
+                          </div> -->
+                        </div>
+
+                      <div class="deposit__profit">
+                        <span>Total Return</span>
+                        <p class="">${{info[3]}}</p>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div *ngIf="!quickNav.storeData.store['my_plans']?.completed.length" class="profile__info">
+                    <p><i class="ti ti-info-circle"></i> No completed VI</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end closed -->
+
+            <!-- new -->
+            <div class="tab-pane fade" id="tab-f3" role="tabpanel">
+              <div class="row">
+                <div class="col-12">
+                  <h3 class="profile__title">Invest in an arbitration pool</h3>
+                </div>
+
+                <div class="col-12 col-xl-4">
+                  <div class="form__group">
+                    <label for="tariff" class="form__label">Tariff plan</label>
+                    <select name="tariff" id="tariff" class="form__select">
+                      <option value="0">Maximum</option>
+                      <option value="1">Standard</option>
+                      <option value="2">Lite</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-12 col-xl-4">
+                  <div class="form__group">
+                    <label for="period" class="form__label">Period</label>
+                    <select name="period" id="period" class="form__select">
+                      <option value="0">2 months</option>
+                      <option value="1">6 months</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-12 col-xl-4">
+                  <div class="form__group">
+                    <label for="amount" class="form__label">Enter amount</label>
+                    <input id="amount" type="text" name="amount" class="apool__input">
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <button class="form__btn form__btn--small" data-bs-target="#modal-apool" type="button" data-bs-toggle="modal">Invest</button>
+                </div>
+              </div>
+            </div>
+            <!-- end new -->
+          </div>
+          <!-- end tabs content -->
+
+          <!-- design elements -->
+          <span class="screw screw--lines-bl"></span>
+          <span class="screw screw--lines-br"></span>
+          <span class="screw screw--lines-tr"></span>
+          <span class="screw screw--lines-tl"></span>
+        </div>
+        <!-- end profile -->
+      </div>
+    </div>
+  </div>
+  <!-- end investing -->
+  </section>
+
+  <app-menu-bottom></app-menu-bottom>

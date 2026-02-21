@@ -1,0 +1,70 @@
+<app-header2></app-header2>
+<app-spinner></app-spinner>
+<app-trading-summary></app-trading-summary>
+
+
+
+<section class="app-container ">
+
+  <div class="invest-card page-wrapper">
+
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-12">
+
+        <h3 class="apool__title mt-4">Create Vi Trading</h3>
+
+        <!-- arbitrage pool -->
+        <div id="createvi" class="apool mt-2">
+          <!-- <p class="text-white">Create Vi Trading</p> -->
+
+
+          <div *ngIf="quickNav.storeData.store['PLANS']"  class="apool__group mt-4">
+            <label for="pool1" class="apool__label">Duration</label>
+            <select class="form__select" (change)="onPlanChange($event)">
+              <option *ngFor="let i of quickNav.storeData.store['PLANS'];let idx=index" [value]="idx">{{i.duration_days}}days, {{i.profit_percent}}%</option>
+            </select>
+
+
+            <!-- <input id="pool1" name="pool1" type="text" class="apool__select"> -->
+          </div>
+
+          <div class="apool__group">
+            <label for="pool1" class="apool__label">Enter amount</label>
+            <input
+                [(ngModel)]="trade_amount"
+                type="number"
+                class="apool__input"
+                (keyup)="onAmountKeyup($event)"
+
+                >
+          </div>
+
+          <!-- chatgpt style this flex table -->
+          <div class="trade-properties">
+            <div class="row-item">
+              <span class="label">Minimum</span>
+              <span class="value minimum">${{plan?.min_investment|number:"2.2-2"}}</span>
+            </div>
+            <div *ngIf="totalReturn" class="row-item">
+              <span class="label">Total Return</span>
+              <span class="value total">${{totalReturn}}</span>
+            </div>
+          </div>
+
+          <button (click)="handleSubmit()" [disabled]="!trade_amount||trade_amount<plan?.min_investment" class="apool__btn"  type="submit" >Invest</button>
+
+
+          <!-- design elements -->
+          <span class="block-icon block-icon--orange">
+            <i class="ti ti-database-dollar"></i>
+          </span>
+          <span class="screw screw--lines-tr"></span>
+        </div>
+        <!-- end arbitrage pool -->
+      </div>
+
+  </div>
+</div>
+</section>
+
+<app-menu-bottom></app-menu-bottom>
