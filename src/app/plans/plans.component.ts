@@ -4,111 +4,110 @@ import { CommonModule } from '@angular/common';
 import { Header2Component } from '../components/header2/header2.component';
 import { SpinnerComponent } from '../reuseables/http-loader/spinner.component';
 import { MenuBottomComponent } from "../components/menu-bottom/menu-bottom.component";
-import {TradingSummaryComponent } from "../trading-summary/trading-summary.component";
+import { TradingSummaryComponent } from "../trading-summary/trading-summary.component";
 
 import { QuickNavService } from '../reuseables/services/quick-nav.service';
-
 import { CountdownPipe } from '../reuseables/pipes/countdown.pipe';
 
 @Component({
   selector: 'app-plans',
   imports: [
     CommonModule,
-    Header2Component,SpinnerComponent,MenuBottomComponent,
-    TradingSummaryComponent, CountdownPipe
+    Header2Component,
+    SpinnerComponent,
+    MenuBottomComponent,
+    TradingSummaryComponent,
+    CountdownPipe
   ],
   templateUrl: './plans.component.html',
   styleUrl: './plans.component.css'
 })
 export class PlansComponent {
 
-  constructor(
-    public quickNav: QuickNavService
-  ){}
+  activePlans:any[] = [];
+  completedPlans:any[] = [];
+
+  constructor(public quickNav: QuickNavService) {}
 
   ngOnInit(){
+
     if (!this.quickNav.storeData.get('my_plan')) {
-      this.quickNav.reqServerData.get('my-plan/').subscribe((res)=>{
-        console.log({res});
-        // this.setPlan()
-      })
+      this.quickNav.reqServerData.get('my-plan/').subscribe(()=>{
+        this.preparePlans();
+      });
+    } else {
+      this.preparePlans();
     }
   }
 
+  // =========================
+  // 🔥 PREPARE UI DATA ONCE
+  // =========================
+  preparePlans(){
 
+    const store = this.quickNav.storeData.store;
 
-  calculateReturn(plan:any,amount:any) {
+    this.activePlans = (store['my_plans']?.active || []).map((p:any) => this.transformPlan(p));
+    this.completedPlans = (store['my_plans']?.completed || []).map((p:any) => this.transformPlan(p));
+  }
+
+  transformPlan(plan:any){
+
+    const planData = this.quickNav.storeData.store['PLANS'][plan.plan_id];
+
+    const progress = this.getAccruedPercent(plan.created_at, planData.duration_days);
+
+    const accrued = this.getAccruedProfit(planData, plan.amount, plan.created_at);
+
+    const dailyInfo = this.calculateReturn(planData, plan.amount);
+
+    return {
+      ...plan,
+      planData,
+      progress,
+      accrued,
+      dailyInfo,
+      remainingDays: this.getDaysDifference(this.endDate(plan.created_at, planData.duration_days))
+    };
+  }
+
+  calculateReturn(plan:any, amount:any) {
 
     const percent = plan.profit_percent;
     const days = plan.duration_days;
 
     const dailyProfit = amount * (percent / 100);
     const totalProfit = dailyProfit * days;
+    const totalReturn = amount + totalProfit;
 
-    let totalReturn = amount + totalProfit;
-
-    return [percent, dailyProfit, totalProfit, totalReturn, plan]
-
+    return [percent, dailyProfit, totalProfit, totalReturn, plan];
   }
 
-  getDailyProfit(plan_id:any,amount:any){
-    const plan = this.quickNav.storeData.store['PLANS'][plan_id]
+  getAccruedPercent(created_at:any, duration_days:any): number {
 
-    let data = this.calculateReturn(plan,parseFloat(amount))
-    return data
+    const start = new Date(created_at).getTime();
+    const now = Date.now();
+
+    const percent = ((now - start) / (1000 * 60 * 60 * 24 * duration_days)) * 100;
+
+    return Math.min(100, Math.max(0, Math.floor(percent)));
   }
 
-  getAccruedPercent(created_at:any, duration_days:any) {
+  getAccruedProfit(plan:any, amount:any, created_at:any) {
 
-    const start = new Date(created_at);
-    const now = new Date();
+    const createdAt = new Date(created_at).getTime();
+    const now = Date.now();
 
-    const diffMs = now.getTime() - start.getTime();
+    let daysPassed = (now - createdAt) / (1000 * 60 * 60 * 24);
 
-    const daysPassed = diffMs / (1000 * 60 * 60 * 24);
+    daysPassed = Math.max(0, Math.min(daysPassed, plan.duration_days));
 
-    let percent = (daysPassed / duration_days) * 100;
-
-    // clamp between 0 and 100
-    percent = Math.max(0, Math.min(percent, 100));
-
-    return Math.floor(percent) ;
-  }
-
-
-  getAccruedProfit(plan:any, amount:any,created_at:any) {
-
-
-    const createdAt = new Date(created_at);
-    const now = new Date();
-
-    const duration = plan.duration_days;
-    const percent = plan.profit_percent;
-
-    // calculate days passed
-    const diffMs = now.getTime() - createdAt.getTime();
-    let daysPassed = diffMs / (1000 * 60 * 60 * 24);
-
-    // prevent negative
-    daysPassed = Math.max(0, daysPassed);
-
-    // limit to plan duration
-    daysPassed = Math.min(daysPassed, duration);
-
-    // daysPassed = 1
-
-    // daily profit
-    const dailyProfit = parseFloat(amount) * (percent / 100);
-    let accrued = 0 ;
-    // if (daysPassed>=1) {
-    //   accrued = dailyProfit * daysPassed;
-    // }
-    accrued = dailyProfit * daysPassed;
+    const dailyProfit = parseFloat(amount) * (plan.profit_percent / 100);
 
     return {
       daysPassed: Math.floor(daysPassed),
-      accrued: accrued,
-      dailyProfit: dailyProfit
+      accrued: dailyProfit * daysPassed,
+      dailyProfit
     };
   }
 
@@ -121,12 +120,16 @@ export class PlansComponent {
   }
 
   getDaysDifference(d1:any, d2=new Date()) {
-    const date1 = new Date(d1);
-    const date2 = new Date(d2);
 
-    const diffTime = date1.getTime() - date2.getTime();
+    const diffTime = new Date(d1).getTime() - new Date(d2).getTime();
 
     return Math.floor(diffTime / (1000 * 60 * 60 * 24));
   }
 
+  getDailyProfit(plan_id:any,amount:any){
+    const plan = this.quickNav.storeData.store['PLANS'][plan_id]
+
+    let data = this.calculateReturn(plan,parseFloat(amount))
+    return data
+  }
 }

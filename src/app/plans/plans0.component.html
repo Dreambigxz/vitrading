@@ -58,37 +58,20 @@
 
                         </div>
 
-                          <div *ngIf="getAccruedPercent(plan.created_at, info[4].duration_days) as progress;else noProgress"
+                          <div *ngIf="getAccruedPercent(plan.created_at, info[4].duration_days) as progress"
                                class="progress"
                                role="progressbar"
                                aria-valuemin="0"
                                aria-valuemax="100"
-                               [attr.aria-valuenow]="progress">
+                               [attr.aria-valuenow]="progress[0]">
 
                             <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                 [style.width.%]="progress">
+                                 [style.width.%]="progress[0]">
 
-                              <span>{{progress}}%</span>
+                              <span>{{progress[0]}}%</span>
 
                             </div>
                           </div>
-
-                          <ng-template #noProgress>
-                            <div
-                                 class="progress"
-                                 role="progressbar"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100"
-                                 [attr.aria-valuenow]="0">
-
-                              <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                   [style.width.%]="0">
-
-                                <span>0%</span>
-
-                              </div>
-                            </div>
-                            </ng-template>
 
                           <!-- <div class="progressbar__values">
                             <span class="progressbar__value progressbar__value--left">0%</span>
