@@ -1,0 +1,192 @@
+.wallet-page {
+  /* background: #000; */
+  min-height: 100vh;
+  color: #fff;
+  /* padding: 15px; */
+  font-family: Arial, sans-serif;
+}
+
+
+/* navigator Tabs */
+.wallet-tabs {
+  display: flex;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.wallet-tab {
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  color: #aaa;
+  transition: 0.2s ease;
+  user-select: none;
+}
+
+/* Active tab (like screenshot) */
+.wallet-tab.active {
+  background: #2a2a2a;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Inactive hover */
+.wallet-tab:not(.active):hover {
+  color: #fff;
+}
+
+/* Card */
+.deposit-card {
+  background: linear-gradient(150deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.section-title {
+  border-left: 3px solid #a034fa;
+  padding-left: 8px;
+  margin-bottom: 20px;
+}
+
+
+
+/* Channel Select */
+.type-tabs {
+  display: inline-flex;
+  background: #141224;
+  border-radius: 20px;
+  padding: 4px;
+  margin: 10px 0 20px 0;
+}
+
+.type-tab {
+  padding: 6px 16px;
+  font-size: 13px;
+  border-radius: 16px;
+  cursor: pointer;
+  color: #aaa;
+  transition: 0.25s ease;
+}
+
+.type-tab.active {
+  background: #2a2a2a;
+  color: #fff;
+  font-weight: 500;
+}
+
+.type-tab:not(.active):hover {
+  color: #fff;
+}
+
+/* Token Select */
+.token-select select {
+  width: 100%;
+  padding: 10px;
+  background: #2a2a2a;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+/* Network */
+.network-options {
+  display: flex;
+  flex-direction: row;      /* force horizontal */
+  align-items: center;
+  gap: 24px;
+  flex-wrap: nowrap;        /* prevent stacking */
+}
+
+.network-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #aaa;
+  position: relative;
+}
+
+/* Hide default radio */
+.network-option input {
+  display: none;
+}
+
+/* Custom circle */
+.custom-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #666;
+  display: inline-block;
+  position: relative;
+  transition: 0.2s ease;
+}
+
+/* Active state */
+.network-option input:checked + .custom-radio {
+  background: #c4f000; /* green like screenshot */
+  border-color: #c4f000;
+}
+
+/* Check mark */
+.network-option input:checked + .custom-radio::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  font-size: 12px;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Active text */
+.network-option input:checked ~ span,
+.network-option input:checked {
+  color: #fff;
+}
+
+/* QR */
+.qr-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.qr-wrapper img {
+  background: #fff;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+/* Wallet Address */
+.wallet-address {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #141324;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+
+.copy-btn {
+  background: #a034fa;
+  color: #ffff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Warning */
+.warning-text {
+  font-size: 13px;
+  opacity: 0.6;
+  line-height: 1.4;
+}

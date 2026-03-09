@@ -1,29 +1,5 @@
-<!-- <div class="custom-toast" [ngClass]="data.status">
-  <mat-icon class="icon">{{ data.status === 'success' ? 'check_circle' : 'error' }}</mat-icon>
-  <span class="message">{{ data.message }}</span>
-
-  <button mat-icon-button class="close-btn" (click)="closeToast()" >
-    <mat-icon>close</mat-icon>
-  </button>
-</div> -->
-
-<div class="toast-wrapper">
-  <div class="toast-icon">
-    <i
-      class="ti"
-      [ngClass]="{
-        'ti-circle-check': data.status === 'success',
-        'ti-alert-circle': data.status === 'error',
-        'ti-info-circle': data.status === 'info'
-      }"
-    ></i>
+<div class="toast-overlay">
+    <div class="toast-box" [ngClass]="type">
+      {{message}}
+    </div>
   </div>
-
-  <div class="toast-message">
-    {{ data.message }}
-  </div>
-
-  <button class="toast-close" (click)="snackBarRef.dismiss()">
-    <i class="ti ti-x"></i>
-  </button>
-</div>

@@ -1,4 +1,4 @@
-.header-title{
+/* .header-title{
   text-transform: capitalize;
 }
 
@@ -13,10 +13,29 @@
 }
 
 .balance__data.text-deem.notranslate {
-    /* right: 10px; */
     position: relative;
-    /* top: 20px; */
+} */
+
+/* Header */
+.wallet-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
+
+.back-btn {
+  position: absolute;
+  left: 0;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.wallet-header h2, h5 {
+  font-weight: 600;
+  font-size: 15px;
+}
+
 
 .title-area.snipcss-84QUn {
     position: sticky;

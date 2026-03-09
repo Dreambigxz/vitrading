@@ -1,91 +1,61 @@
-
+.cdk-overlay-container,
+.mat-mdc-dialog-container,
+.mat-mdc-dialog-container * {
+  font-family: inherit !important;
+}
 
 .delete{
   color: var(--bs-danger) !important;
 }
 
-/* Dialog Container */
-::ng-deep .mat-dialog-container {
-  border-radius: 16px;
-  padding: 0;
-  max-width: 400px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
+.dialog-header{
+  padding:16px 20px;
+  font-size:13px;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:4px;
 }
 
-/* Title */
-.dialog-title {
-  font-weight: 900;
-  font-size: 20px;
-  text-align: center;
-  padding: 24px 20px 12px;
-  color: #484b50;
+.dialog-title{
+  font-weight:600;
+  font-size:12px;
+  opacity:.7;
+  text-transform:uppercase;
 }
 
-/* Message */
-.dialog-content {
-  text-align: center;
-  padding: 0 24px 24px;
+.dialog-separator{
+  opacity:.4;
 }
 
-.dialog-message {
-  font-weight: 400;
-  font-size: 14.5px;
-  color: #6b7280;
-  line-height: 1.6;
+.dialog-message{
+  font-size:12px;
+  color: #fff
 }
 
-/* Actions */
-.dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  padding: 12px 24px 20px;
-  gap: 12px;
+.dialog-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  padding:12px 20px 18px;
+  border-top:1px solid rgba(0,0,0,0.06);
 }
 
-/* Cancel Button */
-.btn-cancel {
-  color: #6b7280; /* subtle gray */
-  font-weight: 500;
-  min-width: 80px;
-  border-radius: 999px;
-  transition: background 0.2s, color 0.2s;
+.btn-cancel{
+  font-weight:500;
+  height: 30px;
+
+  color: #6c757d !important;
 }
 
-.btn-cancel:hover {
-  background: rgba(107, 114, 128, 0.1);
-}
+/* .btn-cancel:hover {
+  background: red !important;
+} */
 
-/* Confirm Button - Active/Primary */
-.btn-confirm {
-  min-width: 80px;
-  border-radius: 999px;
-  font-weight: 600;
-  padding: 8px 20px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
-  background: transparent !important;
-  /* #07141d !important; /* NEW: bold blue */
-  border: 1px solid #0479b4;
-  color: #ffffff; /* white text */
-  transition: background 0.2s, transform 0.15s;
-}
-
-.btn-confirm:hover {
-  background: #1d4ed8; /* slightly darker blue on hover */
-  transform: translateY(-1px);
-}
-
-.btn-confirm:active {
-  background: #1e40af; /* deep blue on click */
-  transform: translateY(0);
-}
-
-
-/* Optional: Success/Error classes */
-.dialog-title.success {
-  color: #16a34a;
-}
-
-.dialog-title.error {
-  color: #dc2626;
+.btn-confirm{
+  font-weight:600;
+  border-radius:6px;
+  background: #6c757d !important;
+  height: 30px;
+  /* linear-gradient(135deg, #572c7c 0%, #572c7c 50%, #a034fa 100%) !important; */
 }

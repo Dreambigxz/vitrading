@@ -5,9 +5,9 @@
       <span>Account Balance</span>
     </div>
 
-    <div class="actions">
-      <button class="deposit hero__btn">Deposit</button>
-      <button class="withdraw hero__btn hero__btn--light">Withdraw</button>
+    <div  class="actions">
+      <button (click)="quickNav.go('wallet',  {page:'deposit'})" class="deposit hero__btn">Deposit</button>
+      <button (click)="quickNav.go('wallet',  {page:'withdraw'})" class="withdraw hero__btn hero__btn--light">Withdraw</button>
     </div>
   </div>
 

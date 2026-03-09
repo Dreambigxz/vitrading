@@ -41,7 +41,6 @@ export class AppDownloadManager {
   }
 
   showDownload() {
-    console.log('Device:', this.quickNav.storeData.get('device'));
   }
 
   installApp() {
@@ -53,14 +52,11 @@ export class AppDownloadManager {
       this.installPromptEvent.prompt();
 
       this.installPromptEvent.userChoice.then((choiceResult: any) => {
-        console.log('User choice result:', choiceResult.outcome);
         if (choiceResult.outcome === 'accepted') {
           this.quickNav.storeData.set('can_download_app', false);
         }
         this.installPromptEvent = null;
       });
-    } else {
-      console.log('⚠️ No install prompt event available');
     }
   }
 

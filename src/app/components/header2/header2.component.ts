@@ -56,10 +56,13 @@ export class Header2Component {
       this.pageName='VI Quantitative Trading'
     }
     else{
-      this.pageName=segments.pop() || ''
+      this.pageName=segments.pop()?.split("?")[0] || ''
     }
 
     this.quickNav.storeData.set("pageName", this.pageName)
+
+    // console.log({"pageName": this.pageName});
+
   }
 
 

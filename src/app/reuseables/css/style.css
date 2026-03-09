@@ -25,3 +25,42 @@
 .mb-20 { margin-top: 5rem; }
 .mb-30 { margin-top: 7rem; }
 .mb-40 { margin-top: 10rem; }
+
+/* Base loading button */
+button.loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Hide button text smoothly */
+button.loading span,
+button.loading i,
+button.loading .btn-text {
+  visibility: hidden;
+}
+
+/* Spinner */
+button.loading::after {
+  content: "";
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+
+  border: 0.2rem solid rgba(255, 255, 255, 0.4);
+  border-top: 0.2rem solid #ffffff;
+
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Spinner animation */
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

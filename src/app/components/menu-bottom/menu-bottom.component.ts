@@ -28,7 +28,7 @@ export class MenuBottomComponent {
       { label: 'Plan', route: '/my-plan', key: 'my-plan', path:"desktop" },
 
       // { label: 'Teams', route: '/', key: 'earnings', path:"users" },
-      { label: 'Invite', route: '/promotions/earnings', key: 'earnings', path:"dollar" },
+      { label: 'Invite', route: '/invite', key: 'invite', path:"dollar" },
 
       { label: 'Account', route: '/account', key: 'account', path:"user" },
       // { label: 'Me', route: '/account', key: 'account', path:"user" }

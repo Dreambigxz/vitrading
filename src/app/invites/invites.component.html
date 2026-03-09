@@ -1,0 +1,219 @@
+<app-header2></app-header2>
+<app-spinner></app-spinner>
+
+
+<div *ngIf="quickNav.storeData.store['refDir'] as ref" class="page-wrapper">
+
+  <section class="app-container">
+    <div class="ref-card">
+
+      <!-- Title -->
+      <div class="ref-title">Total Referral Commission</div>
+
+      <!-- Amount -->
+      <div class="ref-amount">
+        <span class="amount">{{ref.cashed_commissions |currencyConverter}}</span>
+        <span class="currency">{{walletData?.init_currency['code']}}</span>
+      </div>
+
+      <!-- Description -->
+      <p class="ref-desc">
+        Share this link to invite friends and earn crypto rewards!
+      </p>
+
+      <!-- Referral Link -->
+      <div class="ref-link-label">Referral Link</div>
+
+      <div class="ref-link-box">
+        <input
+          type="text"
+          [value]="refLink | truncateCenter:15"
+          readonly
+        />
+        <button (click)="quickNav.copy(refLink,'invite link copied!')">Copy</button>
+      </div>
+
+      <!-- Social -->
+      <div class="share-section">
+        <div class="share-title">
+          <i class="ti ti-speakerphone"></i>
+          Share on Social Media
+        </div>
+
+        <div class="social-icons">
+
+          <a (click)="share('line')">
+            <img src="https://cdn.simpleicons.org/line" />
+          </a>
+
+          <a (click)="share('whatsapp')">
+            <img src="https://cdn.simpleicons.org/whatsapp" />
+          </a>
+
+          <a (click)="share('telegram')">
+            <img src="https://cdn.simpleicons.org/telegram" />
+          </a>
+
+          <a (click)="share('facebook')">
+            <img src="https://cdn.simpleicons.org/facebook" />
+          </a>
+
+          <a (click)="share('twitter')">
+            <img src="https://cdn.simpleicons.org/x" />
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section>
+    <div class="sub-page">
+
+      <!-- MAIN TABS -->
+      <div class="sub-tabs">
+
+        <div
+          class="sub-tab"
+          [class.active]="inviteService.page === 'commissions'"
+          (click)="inviteService.page = 'commissions'">
+          Commissions
+        </div>
+
+        <div
+          class="sub-tab"
+          [class.active]="inviteService.page === 'transactions'"
+          (click)="inviteService.page = 'transactions'">
+          Transactions
+        </div>
+
+        <div
+          class="sub-tab"
+          [class.active]="inviteService.page === 'users'"
+          (click)="inviteService.page = 'users'">
+          Users
+        </div>
+
+      </div>
+
+
+      <!-- LEVEL TABS -->
+      <div class="level-tabs">
+
+        <div
+          *ngIf="inviteService.page !== 'users'"
+          class="level-tab"
+          [class.active]="inviteService.level === 'all'"
+          (click)="inviteService.level = 'all'">
+          All
+        </div>
+
+        <div
+          class="level-tab"
+          [class.active]="inviteService.level === 'level1' || inviteService.page === 'users' &&  inviteService.level ===  'all' "
+          (click)="inviteService.level = 'level1'">
+          Level1
+        </div>
+
+        <div
+          class="level-tab"
+          [class.active]="inviteService.level === 'level2'"
+          (click)="inviteService.level = 'level2'">
+          Level2
+        </div>
+
+        <div
+          class="level-tab"
+          [class.active]="inviteService.level === 'level3'"
+          (click)="inviteService.level = 'level3';">
+          Level3
+        </div>
+
+        <div
+          *ngIf="inviteService.page === 'users'"
+          class="level-tab"
+          [class.active]="inviteService.level == 'pending'"
+          (click)="inviteService.level = 'pending' ">
+          Inactive
+        </div>
+
+
+
+      </div>
+
+
+      <!-- DATA -->
+      <div class="mt-5" *ngIf="inviteService.calculateTabData as data">
+      <!-- <div class="mt-5" *ngIf="inviteService.calculateTabData as data"> -->
+
+        <!-- ========================= -->
+        <!-- COMMISSIONS -->
+        <!-- ========================= -->
+        <ng-container *ngIf="inviteService.page === 'commissions'">
+
+          <div class="stats-grid">
+
+            <div class="stat-card primary">
+              <div class="stat-title">Total Commission</div>
+              <div class="stat-value">
+                {{ data.amount |  currencyConverter:true }}
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-title">Team Size</div>
+              <div class="stat-value">
+                {{ data.count }}
+              </div>
+            </div>
+
+          </div>
+
+        </ng-container>
+
+
+        <!-- ========================= -->
+        <!-- TRANSACTIONS -->
+        <!-- ========================= -->
+        <ng-container *ngIf="inviteService.page === 'transactions'">
+
+          <div class="stats-grid">
+
+            <div class="stat-card primary">
+              <div class="stat-title">Team Deposits</div>
+              <div class="stat-value">
+                {{ data.deposit.amount |  currencyConverter:true }}
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-title">Team Withdrawals</div>
+              <div class="stat-value">
+                {{ data.withdraw.amount |  currencyConverter:true }}
+              </div>
+            </div>
+
+          </div>
+
+        </ng-container>
+
+
+        <!-- ========================= -->
+        <!-- USERS -->
+        <!-- ========================= -->
+        <ng-container *ngIf="inviteService.page === 'users'">
+
+          <app-users></app-users>
+
+        </ng-container>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+</div>
+
+<app-menu-bottom></app-menu-bottom>

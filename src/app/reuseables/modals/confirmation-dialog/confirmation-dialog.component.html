@@ -1,17 +1,18 @@
-<h2 *ngIf="data.title"
-    [class]="data.title.toLowerCase()"
-    mat-dialog-title
-    class="dialog-title">
-  {{ data.title || 'Confirm!' }}
-</h2>
+<div class="dialog-header" *ngIf="data.title || data.message">
 
-<mat-dialog-content class="dialog-content">
-  <p class="dialog-message">
+  <span class="dialog-title">
+    {{ data.title || 'Confirm' }}
+  </span>
+
+  <span class="dialog-separator"> | </span>
+
+  <span class="dialog-message">
     {{ data.message || 'Are you sure you want to continue with this request?' }}
-  </p>
-</mat-dialog-content>
+  </span>
 
-<mat-dialog-actions class="dialog-actions">
-  <button mat-button class="btn-cancel" (click)="cancel()">Cancel</button>
-  <button type="button" mat-flat-button color="primary" class="btn-confirm" (click)="confirm()">Yes</button>
-</mat-dialog-actions>
+</div>
+
+<div class="dialog-actions">
+  <button mat-button class="btn-cancel" (click)="cancel()">NO</button>
+  <button mat-flat-button color="primary" class="btn-confirm" (click)="confirm()">YES</button>
+</div>

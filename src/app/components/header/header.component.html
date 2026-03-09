@@ -1,6 +1,6 @@
 <header class="mobile-header header__content header">
   <div class="left">
-    <img src="/assets/img/logo.svg" alt="Logo" class="logo" />
+    <img src="/assets/img/vi.svg" alt="Logo" class="logo" />
   </div>
 
   <div class="middle">
@@ -8,7 +8,8 @@
   </div>
 
   <div class="right">
-    <span class="balance-label">BQ</span>
+    <i (click)="quickNav.authService.logout(false)" class="ti ti-power"></i>
+    <!-- <span class="balance-label">BQ</span> -->
     <!-- <span class="balance-amount">{{ balance | currency:'USD' }}</span> -->
   </div>
 </header>

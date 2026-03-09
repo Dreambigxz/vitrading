@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform, ChangeDetectorRef, NgZone, inject} from '@angular/core';
 import { Observable, interval } from 'rxjs';
 import { map, startWith, takeWhile } from 'rxjs/operators';
-import { MatchService } from '../services/match.service'; // ✅ adjust path as needed
 
 @Pipe({
   name: 'countdown',
@@ -11,8 +10,6 @@ import { MatchService } from '../services/match.service'; // ✅ adjust path as 
 export class CountdownPipe implements PipeTransform {
   private timer$: Observable<string | null> | null = null;
   private lastTarget: any = null;
-
-  private matchService =  inject(MatchService)
 
   constructor(private cdr: ChangeDetectorRef, private zone: NgZone) {}
 
@@ -43,11 +40,6 @@ export class CountdownPipe implements PipeTransform {
           const diff = settleAt - now;
 
           if (diff <= 0) {
-
-            if (source==='upcoming') {
-              this.matchService.upcoming()
-            }
-
             return null
           };
 

@@ -1,0 +1,86 @@
+/* users table */
+.users-table{
+  margin-top:15px;
+}
+
+.table-wrapper{
+  overflow-x:auto;
+  border-radius:10px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#14141f;
+  font-size:13px;
+}
+
+thead{
+  background:#1d1d2b;
+}
+
+th{
+  text-align:left;
+  padding:12px;
+  color:#8c8ca1;
+  font-weight:500;
+  font-size:12px;
+}
+
+td{
+  padding:12px;
+  border-top:1px solid #23233a;
+  color:#e4e4f1;
+}
+
+tr:hover{
+  background:#1a1a2d;
+}
+
+/* user column */
+.user{
+  font-weight:500;
+}
+
+/* profit column */
+.profit{
+  color:#00e676;
+  font-weight:600;
+}
+
+/* status badge */
+
+.status{
+  padding:3px 8px;
+  border-radius:6px;
+  font-size:11px;
+}
+
+.status.paid{
+  background:#00e67620;
+  color:#00e676;
+}
+
+.status.pending{
+  background:#ff980020;
+  color:#ff9800;
+}
+
+/* date */
+.date{
+  color:#9ca3af;
+}
+
+/* mobile */
+
+@media(max-width:600px){
+
+  table{
+    font-size:12px;
+  }
+
+  th, td{
+    padding:10px;
+  }
+
+}

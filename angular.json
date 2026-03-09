@@ -32,7 +32,6 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles2.css",
               "src/styles.scss",
               "src/app/reuseables/css/style.css",
               "src/app/reuseables/custom.css",

@@ -1,0 +1,109 @@
+<app-header2></app-header2>
+<app-spinner></app-spinner>
+
+<app-result #resultModal></app-result>
+<!-- <section class="app-container"> -->
+  <div class="sub-page">
+    <!-- MAIN TABS -->
+    <div class="sub-tabs">
+
+      <div
+        class="sub-tab"
+        *ngFor="let type of wheelTypes"
+        [class.active]="wheel_type === type"
+        (click)="setReward(type)">
+
+        {{ type | titlecase }}
+
+        <span class="spin-badge" *ngIf="SPINS&&SPINS[type]?.length > 0">
+          {{ SPINS[type]?.length }}
+        </span>
+
+      </div>
+
+    </div>
+  </div>
+<!-- </section> -->
+
+  <div class="page-wrapper">
+
+    <div class="wheel-info space-between text-white">
+      <span>Wheel left: <b>{{wheelCount}}</b> </span>
+        <span>  Trial left: <strong>{{spinCount}}</strong></span>
+    </div>
+    <p class="text-center text-white ">
+
+    </p>
+
+    <div class="wheel-container">
+
+      <div
+        class="wheel"
+        [style.background]="wheelGradient"
+        [style.transform]="'rotate('+rotation+'deg)'"
+      >
+
+        <div
+          *ngFor="let reward of rewards; let i = index"
+          class="wheel-segment"
+          [style.transform]="'rotate(' + (i * segmentAngle + segmentAngle/2) + 'deg)'"
+        >
+          <span class="wheel-label">
+            {{reward}} USDT
+          </span>
+        </div>
+
+      </div>
+
+      <!-- <div class="wheel-pointer"></div> -->
+
+      <button *ngIf="spinCount>0" class="spin-btn" (click)="spinWheel(wheel_type)">Spin</button>
+      <button [disabled]='spinCount==0' *ngIf="spinCount==0" class="spin-btn disabled">Spin</button>
+
+    </div>
+
+    <div class="rules-card">
+
+        <div class="rules-title">
+          Activity Rules
+        </div>
+
+        <div class="rules-list">
+
+          <div class="rule-item" *ngFor="let rule of rules; let i = index">
+
+            <div class="rule-number">
+              {{ i + 1 }}.
+            </div>
+
+            <div class="rule-text">
+
+              First deposit of
+              <b>
+                <ng-container *ngIf="rule.max; else openRange">
+                  {{ rule.min }}
+                  <!-- - {{ rule.max }} USDT -->
+                </ng-container>
+
+                <ng-template #openRange>
+                  {{ rule.min }}+ USDT
+                </ng-template>
+              </b>
+
+              : User and direct referrer both get
+
+              <b>
+                {{ rule.spins }}
+                {{ rule.wheel }}
+                {{ rule.spins > 1 ? 'draws' : 'draw' }}
+              </b>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+  </div>

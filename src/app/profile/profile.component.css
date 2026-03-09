@@ -1,147 +1,300 @@
-/* ===== Profile Header ===== */
-.header-container {
-  background: linear-gradient(135deg, #0f172a, rgb(5 17 32));
-  padding: 16px;
-  color: #fff;
+.account-page{
+  /* padding:16p; */
+  color:#fff;
 }
 
-.account-wrap {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* profile */
+
+.profile-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  background:linear-gradient(
+      150deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.01) 100%);
+  border-radius:12px;
+  margin-bottom: 12px;
 }
 
-.avatar-image {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#30233c;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
 }
 
-.wording-wrap .name {
-  font-weight: 600;
-  font-size: 15px;
+.profile-info h3{
+  margin:0;
+  font-size:16px;
 }
 
-.badge-vip {
-  margin-top: 4px;
-  background: #facc15;
-  color: #000;
-  font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 12px;
-  display: inline-block;
+.user-id{
+  font-size:12px;
+  color:#9ca3af;
 }
 
-/* ===== Balance Card ===== */
-.balance-card {
-  margin-top: 12px;
-  padding: 12px;
-  background: rgb(5 17 32);
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.balance-label {
-  font-size: 12px;
-  color: #94a3b8;
-}
-
-.balance-value {
-  font-size: 18px;
-  font-weight: 700;
-  color: #22c55e;
-}
-
-/* ===== Deposit / Withdraw ===== */
-.w-d-wrap {
-  display: flex;
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.w-d-wrap > div {
-  flex: 1;
-  background: #1e293b;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.w-d-wrap img {
-  width: 26px;
-  margin-bottom: 4px;
-}
-
-/* ===== List Items ===== */
-.item {
-  display: flex;
-  align-items: center;
-  padding: 14px 12px;
-  background: rgb(5 17 32);
-  border-bottom: 1px solid #1e293b;
-}
-
-.item:last-child {
-  border-bottom: none;
-}
-
-.item .image {
-  width: 36px;
-  height: 36px;
-  background: #1e293b;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #38bdf8;
-}
-
-.title-wrapper {
-  flex: 1;
-  margin-left: 12px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #e5e7eb;
-}
-
-.item-img.more {
-  color: #64748b;
-}
-
-.info{
-  color: #0479b4;
-}
-
-/* ===== Disabled Item ===== */
-.content-disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-/* ===== Support Card ===== */
-.list-wrap .item {
-  border-radius: 10px;
-  margin: 6px 8px;
-}
-
-/* ===== Language Selector ===== */
-.custom-google-select{
-  padding: 0 !important;
+.select-language{
+  margin-left:auto;
+  font-size:11px;
+  background:#2d2a4d;
+  padding:4px 8px;
+  border-radius:6px;
 }
 
 
-/* ===== Desktop Enhancement ===== */
-@media (min-width: 768px) {
-  .container-fluid {
-    max-width: 480px;
-    margin: auto;
-  }
+/* balance */
+
+.balance-card{
+  margin-top:14px;
+  padding:18px;
+  text-align:center;
+  background:#1a1830;
+  border-radius:12px;
 }
 
-.modal-content {
-   background: rgb(5 17 32);
+.balance-label{
+  font-size:12px;
+  color:#9ca3af;
+}
+
+.balance-amount{
+  font-size:24px;
+  font-weight:600;
+  margin-top:6px;
+}
+
+.balance-usd{
+  font-size:12px;
+  color:#9ca3af;
+}
+
+
+/* actions */
+
+.actions-grid{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.action-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:#1a1830;
+  padding:12px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+.action-item i{
+  font-size:20px;
+  margin-bottom:6px;
+}
+
+.icon-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* badge */
+
+.badge{
+  position:absolute;
+  top:-6px;
+  right:-8px;
+
+  background:#a034fa;
+  color:white;
+
+  font-size:10px;
+  font-weight:600;
+
+  padding:2px 6px;
+  border-radius:12px;
+
+  min-width:16px;
+  text-align:center;
+}
+
+
+
+/* menu */
+.menu-list{
+  background:#1a1830;
+  border-radius:12px;
+  margin-top:15px;
+}
+
+.menu-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 16px;
+  border-bottom:1px solid #26234a;
+  font-size:14px;
+}
+
+.menu-item:last-child{
+  border-bottom:none;
+}
+
+.menu-left{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.menu-left i{
+  font-size:18px;
+  color:#9ca3af;
+}
+
+/* notification icon wrapper */
+
+.icon-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+
+/* badge */
+
+.badge{
+  position:absolute;
+  top:-6px;
+  right:-8px;
+
+  background:#a034fa;
+  color:white;
+
+  font-size:10px;
+  font-weight:600;
+
+  padding:2px 6px;
+  border-radius:10px;
+  min-width:16px;
+
+  text-align:center;
+}
+
+/* arrow */
+
+.menu-item .ti-chevron-right{
+  color:#6b6a88;
+}
+
+/* logout */
+
+.logout-btn{
+  margin-top:16px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#ff4d4f;
+  color:white;
+  font-weight:500;
+}
+
+
+/* modal background */
+.crypto-modal .modal-content{
+  background:#1a1830;
+  border:none;
+  border-radius:14px;
+  color:white;
+  padding:10px;
+}
+
+/* header */
+
+.crypto-modal .modal-header{
+  border:none;
+  padding-bottom:0;
+}
+
+.crypto-modal .modal-title{
+  font-size:16px;
+  font-weight:600;
+}
+
+/* body */
+
+.crypto-modal .modal-body{
+  padding:20px 15px;
+}
+
+/* inputs */
+
+.crypto-input{
+  margin-bottom:14px;
+}
+
+/* .crypto-input input{
+  width:100%;
+  padding:12px 14px;
+
+  background:#0f0e21;
+  border:1px solid #2a274d;
+
+  border-radius:8px;
+  color:white;
+
+  font-size:14px;
+} */
+
+.crypto-input input::placeholder{
+  color:#7a7899;
+}
+
+/* button */
+
+.crypto-btn{
+  width:100%;
+  padding:12px;
+
+  border:none;
+  border-radius:8px;
+
+  background:linear-gradient(135deg,#6c5ce7,#8f7cff);
+  color:white;
+
+  font-weight:500;
+  font-size:14px;
+
+  transition:0.2s;
+}
+
+.crypto-btn:hover{
+  opacity:0.9;
+}
+
+.crypto-btn.disabled{
+  background:#3b3960;
+  cursor:not-allowed;
+}
+
+/* modal width (mobile look) */
+
+/* .crypto-modal .modal-dialog{
+  max-width:380px;
+} */
+
+/* center inside mobile container */
+
+.modal-dialog-centered{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
 }

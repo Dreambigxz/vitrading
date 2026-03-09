@@ -1,94 +1,39 @@
-/* remove default snackbar bg */
-.transparent-snackbar {
-  background: transparent !important;
-  box-shadow: none !important;
+.toast-overlay{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+  z-index:9999;
 }
 
-/* main toast container */
-.toast-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  border-radius: 14px;
-  min-width: 280px;
-  max-width: 90vw;
-  font-size: 14px;
-  font-weight: 500;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  animation: slideUpFade 0.3s ease-out;
-  background: #050817;
-  border: 1px solid #0479b4;
+.toast-box{
+  min-width:220px;
+  max-width:320px;
+  padding:16px 22px;
+  border-radius:14px;
+  font-size:14px;
+  text-align:center;
+  color:white;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  animation:toastPop .25s ease;
 }
 
-/* icon */
-.toast-icon {
-  font-size: 20px;
-  display: flex;
-  align-items: center;
+.success{
+  background:linear-gradient(135deg,#19152f,#19152f);
+  border: 1px solid #a034fa;
 }
 
-/* text */
-.toast-message {
-  line-height: 1.4;
+.error{
+  background:linear-gradient(135deg,#ff5252,#d32f2f);
 }
 
-/* close button */
-.toast-close {
-  background: transparent;
-  border: none;
-  color: inherit;
-  opacity: 0.7;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 50%;
-  transition: opacity 0.2s ease, background 0.2s ease;
-  right: 3px;
-  position: absolute;
+.info{
+  background:linear-gradient(135deg,#5c6bc0,#3949ab);
 }
 
-.toast-close:hover {
-  opacity: 1;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-/* STATUS THEMES */
-.toast-success .toast-wrapper {
-  background: linear-gradient(135deg, #1db954, #16a34a);
-  color: #fff;
-}
-
-.toast-error .toast-wrapper {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: #fff;
-}
-
-.toast-info .toast-wrapper {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: #fff;
-}
-
-.ti-circle-check{
-  color: green;
-}
-.ti-alert-circle{
-  color: red;
-}
-
-.ti-info-circle{
-  color: #0479b4;
-}
-
-
-/* subtle animation */
-@keyframes slideUpFade {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+@keyframes toastPop{
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
 }

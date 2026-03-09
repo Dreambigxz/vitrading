@@ -19,7 +19,6 @@ import { AuthService } from './reuseables/auth/auth.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Pheonix FB';
 
   quickNav = inject(QuickNavService);
   // appManager = inject(AppDownloadManager)
@@ -52,7 +51,7 @@ export class AppComponent {
         }
 
         // this.appManager.showDownload();
-        loadExternalScript()
+        // loadExternalScript()
 
         let total_read = this.quickNav.storeData.get('total_read')
 

@@ -57,7 +57,7 @@ export class AuthService {
         password:["", [Validators.required]],
       }),
       reset:this.fb.group({
-      email:['',[Validators.required]],
+        email:['',[Validators.required]],
     }),
 
   }
@@ -83,11 +83,7 @@ export class AuthService {
   /** ✅ Checks if user is logged in and token still valid */
   checkLogin(): boolean {
 
-    // localStorage['token']=JSON.stringify({
-    //       "created": "2025-09-26T08:15:19.838Z",
-    //       "exp": "2026-09-28T08:15:19.838Z",
-    //       "token": "49cb456378a15cab6848403b1753617235a36606"
-    // })
+
     const raw = localStorage.getItem(this.tokenKey);
 
     if (!raw) {

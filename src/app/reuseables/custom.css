@@ -90,5 +90,15 @@
 }
 
 .bg-dark{
-  background-color:#06131d !important;
+  background-color:#0c0b1b !important;
+}
+
+
+/* mat dialog */
+.cdk-overlay-container * {
+  font-family: inherit !important;
+}
+
+.mat-mdc-dialog-surface{
+  background: #141324 !important;
 }

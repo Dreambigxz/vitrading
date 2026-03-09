@@ -1,16 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainComponent  } from "./main/main.component";
-import { BetinfoComponent  } from "./betinfo/betinfo.component";
-import { BethistoryComponent} from "./bethistory/bethistory.component";
-import { WithdrawComponent} from "./wallet/withdraw/withdraw.component";
-import { DepositComponent} from "./wallet/deposit/deposit.component";
-import { TransactionComponent} from "./wallet/transaction/transaction.component";
-import { EarningsComponent} from "./promotion/earnings/earnings.component";
-import { UsersComponent} from "./promotion/users/users.component";
-import { RewardsComponent} from "./promotion/rewards/rewards.component";
-import { InactiveUsersComponent} from "./promotion/inactive-users/inactive-users.component";
 import { ProfileComponent} from "./profile/profile.component";
-import { MatchesComponent} from "./matches/matches.component";
 import {  NotificationsComponent} from "./notifications/notifications.component";
 
 import { LoginComponent} from "./auth/login/login.component";
@@ -23,7 +13,10 @@ import {PaymentConfirmationComponent} from './payment-confirmation/payment-confi
 import { MarketDetailsComponent } from "./market-details/market-details.component";
 import { CreateAiComponent } from "./create-ai/create-ai.component";
 import { PlansComponent } from "./plans/plans.component";
+import { WalletComponent } from "./wallet/wallet.component";
 
+import { InvitesComponent } from "./invites/invites.component";
+import { LuckyWheelComponent } from "./lucky-wheel/lucky-wheel.component";
 import { authGuard } from './reuseables/auth/auth.guard';
 
 export const routes: Routes = [
@@ -45,48 +38,19 @@ export const routes: Routes = [
 
 
     {
-      path: 'wallet/withdraw',
-      component: WithdrawComponent,
-      title: 'withdraw',
+      path: 'wallet',
+      component: WalletComponent,
+      title: 'wallet',
       canActivate: [authGuard]
     },
 
     {
-      path: 'wallet/deposit',
-      component: DepositComponent,
-      title: 'Deposit',
+      path: 'invite',
+      component: InvitesComponent,
+      title: 'Invited-users',
       canActivate: [authGuard]
     },
-    {
-      path: 'wallet/records',
-      component: TransactionComponent,
-      title: 'Records',
-      canActivate: [authGuard]
-    },
-    {
-      path: 'promotions/earnings',
-      component: EarningsComponent,
-      title: 'Earnings',
-      canActivate: [authGuard]
-    },
-    {
-      path: 'promotions/rewards',
-      component: RewardsComponent,
-      title: 'Rewards',
-      canActivate: [authGuard]
-    },
-    {
-      path: 'promotions/inactive-users',
-      component: InactiveUsersComponent,
-      title: 'Inactive',
-      canActivate: [authGuard]
-    },
-    {
-      path: 'promotions/users/:level',
-      component: UsersComponent,
-      title: 'Inactive',
-      canActivate: [authGuard]
-    },
+
     {
       path: 'account',
       component: ProfileComponent,
@@ -111,7 +75,16 @@ export const routes: Routes = [
       canActivate: [authGuard]
 
     },
+    // luck wheel
+    {
+      path: 'lucky-wheel',
+      component: LuckyWheelComponent,
+      title: 'Voucher:Lucky We=heel',
+      canActivate: [authGuard]
 
+    },
+
+    // agent administration paths
     {
       path: 'confirm-payment',
       component: PaymentConfirmationComponent,
@@ -127,6 +100,7 @@ export const routes: Routes = [
       canActivate: [authGuard]
 
     },
+    // auth  paths (anonymous users)
     {
       path: 'login',
       component: LoginComponent,

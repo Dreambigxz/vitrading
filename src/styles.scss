@@ -1,4 +1,17 @@
 
+// destop force to mobile
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+/* Force dialogs to use your site font */
+
+// .cdk-overlay-container {
+//   font-family: sans-serif !important;
+// }
+
+
 .page-wrapper,
 .main-content,
 .router-outlet-wrapper
@@ -22,8 +35,9 @@
   margin-top: 40px;
   // font-family: Inter, system-ui, sans-serif;
 }
-
-
+.text-right{
+    float: inline-end;
+}
 .space-between{
   justify-content:space-between;
   display: flex;
@@ -62,6 +76,12 @@ button[type="submit"]:disabled {
   filter: none;
 }
 
+input:focus{
+  outline:none;
+  border-color:#a034fa !important;
+}
+
+
 .trading-card {
   // background: #19152f;
    background: linear-gradient(150deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
@@ -86,4 +106,87 @@ button[type="submit"]:disabled {
   height: 200px;
   background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05));
   transform: rotate(45deg);
+}
+
+
+.trade-properties {
+    color: #999;
+    font-size: 10px;
+}
+
+
+// sub pages
+.sub-page {
+  /* background: #000; */
+  // min-height: 100vh;
+  color: #fff;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+}
+
+
+/* navigator Tabs */
+.sub-tabs {
+  display: flex;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.sub-tab {
+  position: relative;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  color: #aaa;
+  transition: 0.2s ease;
+  user-select: none;
+}
+
+/* Active tab (like screenshot) */
+.sub-tab.active {
+  background: #2a2a2a;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Inactive hover */
+.sub-tab:not(.active):hover {
+  color: #fff;
+}
+
+// EMTY DIV STYLING
+.empty-state{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px;
+  color:#7a7a90;
+}
+
+/* icon styling */
+.empty-icon{
+  width:70px;
+  margin-bottom:15px;
+
+  opacity:0.25;
+  filter: grayscale(100%) brightness(0.8);
+}
+
+/* title */
+.empty-state h4{
+  font-size:15px;
+  font-weight:500;
+  color:#b9b9d0;
+  margin-bottom:6px;
+}
+
+/* text */
+.empty-state p{
+  font-size:13px;
+  max-width:260px;
+  line-height:1.4;
+  color:#7a7a90;
 }

@@ -14,8 +14,8 @@ import { FormHandlerService } from '../reuseables/http-loader/form-handler.servi
 import { ReactiveFormsModule, FormBuilder, Validators , FormsModule} from '@angular/forms';
 
 import { AppDownloadManager } from '../reuseables/services/app-download-manager.service';
+import { AccountSummaryComponent } from "../account-summary/account-summary.component";
 
-import { FlowComponent } from "../flow/flow.component";
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +23,7 @@ import { FlowComponent } from "../flow/flow.component";
     CommonModule,CurrencyConverterPipe,
     SpinnerComponent,Header2Component,
     FormsModule, ReactiveFormsModule,
-    MenuBottomComponent, FlowComponent
+    MenuBottomComponent, AccountSummaryComponent
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
@@ -43,6 +43,8 @@ export class ProfileComponent {
   })
 
   modal:any
+  voucherCount = 3
+  notificationCount=3
 
   ngOnInit(){
     if (!this.quickNav.storeData.get('profile')) {this.quickNav.reqServerData.get("profile/").subscribe(

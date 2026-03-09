@@ -49,9 +49,11 @@ export const PostHttpInterceptor: HttpInterceptorFn = (req, next) => {
   const isPost = req.method === 'POST';
   const isGet  =  req.method === 'GET'
 
+  console.log('fetching...',req.url);
+  console.log("isCoinGECKO", req.url.includes("coingecko"));
 
   if (!req.url.includes('hideSpinner')&&isGet||isIOS()||req.url.includes("upload/")||isSafari) {
-    !req.url.includes('hideSpinnerimportant')?loaderService.show():0;
+    !req.url.includes('hideSpinnerimportant')&&!req.url.includes("coingecko")?loaderService.show():0;
   }
 
   if (isPost) {
@@ -84,7 +86,7 @@ export const PostHttpInterceptor: HttpInterceptorFn = (req, next) => {
           authService.logout(true);
         } else {
           !req.url.includes('hideSpinner')?dialog.open(StatusDialogComponent, {
-            data: { title: 'Error', message: 'Request not completed, please reload page!', status: 'error' }
+            data: { title: 'Error', message: 'Reqest not reached, check internet and reload!', status: 'error' }
           }):0;
         }
       }

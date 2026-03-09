@@ -1,0 +1,66 @@
+<div class="table-wrapper">
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>User</th>
+        <!-- <th>Level</th> -->
+        <th>Reward</th>
+        <!-- <th>Stake</th> -->
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let user of inviteService.users">
+
+        <td class="user">
+          {{user.referred_user}}
+        </td>
+
+        <!-- <td>
+          L{{user.generation}}
+        </td> -->
+
+        <td class="profit">
+          {{user.amount | currencyConverter:true}}
+        </td>
+
+        <!-- <td>
+          {{user.base_amount | number}}
+        </td> -->
+
+        <td>
+          <span
+            class="status"
+            [ngClass]="{
+              'paid': user.cashed,
+              'pending': !user.cashed
+            }">
+            {{ user.cashed ? 'Paid' : 'Pending' }}
+          </span>
+        </td>
+
+        <td class="date">
+          {{user.timestamp | date:'short'}}
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+  <div *ngIf="!inviteService.users?.length" class="empty-state">
+
+      <img class="empty-icon" src="https://cdn.jsdelivr.net/npm/@tabler/icons/icons/database-off.svg">
+    <h4>No Users Yet</h4>
+
+    <p>Your referrals will appear here once someone joins using your invite code.</p>
+
+  </div>

@@ -1,19 +1,34 @@
-import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Injectable, ApplicationRef, createComponent, EnvironmentInjector, inject } from '@angular/core';
 import { ToastComponent } from './toast.component';
 
 @Injectable({ providedIn: 'root' })
 export class ToastService {
-  constructor(private snackBar: MatSnackBar) {}
 
-  show(body:any) {
-  // show(message: string, status: 'success' | 'error' = 'success') {
-    this.snackBar.openFromComponent(ToastComponent, {
-      data: { message:body.message, status:body.status },
-      duration: 9000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      panelClass: [`toast-${status}`, 'transparent-snackbar'], // dynamic class
-    });
+  appRef = inject(ApplicationRef)
+  injector = inject(EnvironmentInjector)
+
+  show(data:any){
+
+    const componentRef = createComponent(ToastComponent,{
+      environmentInjector:this.injector
+    })
+
+    componentRef.instance.message = data.message
+    componentRef.instance.type = data.status || 'info'
+
+    const duration = data.duration || 2500
+
+    this.appRef.attachView(componentRef.hostView)
+
+    const domElem = (componentRef.hostView as any).rootNodes[0]
+
+    document.body.appendChild(domElem)
+
+    setTimeout(()=>{
+      this.appRef.detachView(componentRef.hostView)
+      componentRef.destroy()
+    },duration)
+
   }
+
 }

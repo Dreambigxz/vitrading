@@ -1,0 +1,31 @@
+<div class="overlay" *ngIf="visible">
+
+  <div class="result-box">
+
+      <div class="title" *ngIf="isWin">
+        🎉 Congratulations
+      </div>
+
+      <div class="title lose" *ngIf="!isWin">
+        😢 Better Luck Next Time
+      </div>
+
+      <div class="wheel-type">
+        {{wheel | uppercase}} WHEEL
+      </div>
+
+      <div class="reward" *ngIf="isWin">
+        {{reward}} USDT
+      </div>
+
+      <div class="reward lose" *ngIf="!isWin">
+        0 USDT
+      </div>
+
+      <button (click)="close()">
+        OK
+      </button>
+
+  </div>
+
+</div>

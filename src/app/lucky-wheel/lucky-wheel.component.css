@@ -1,0 +1,146 @@
+.wheel-container{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* .wheel{
+  width:300px;
+  height:300px;
+  border-radius:50%;
+
+  background:
+  conic-gradient(
+    #6c5ce7 0deg 45deg,
+    #5c4bd6 45deg 90deg,
+    #6c5ce7 90deg 135deg,
+    #5c4bd6 135deg 180deg,
+    #6c5ce7 180deg 225deg,
+    #5c4bd6 225deg 270deg,
+    #6c5ce7 270deg 315deg,
+    #5c4bd6 315deg 360deg
+  );
+
+  transition: transform 5s cubic-bezier(.17,.67,.25,1);
+  position:relative;
+} */
+.wheel{
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  position:relative;
+  transition: transform 5s cubic-bezier(.17,.67,.25,1);
+}
+
+.wheel-segment{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap: 12px;
+}
+
+.wheel-label{
+  margin-top:18px;
+  font-size:12px;
+  color:white;
+  font-weight:500;
+  /* transform:rotate(-90deg); */
+}
+
+/* spin button */
+
+.spin-btn{
+  position:absolute;
+
+  width:90px;
+  height:90px;
+
+  border-radius:50%;
+  border:none;
+
+  background:linear-gradient(135deg, #16142a, #25223d);
+
+  font-weight:600;
+  font-size:18px;
+  color: #fff;
+}
+
+/* pointer */
+
+.wheel-pointer{
+  position:absolute;
+  top:-8px;
+
+  width:0;
+  height:0;
+
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-bottom:20px solid white;
+}
+
+.wheel-info {
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+button.spin-btn.disabled {
+    opacity: 0.5;
+}
+.spin-badge {
+  position: absolute;
+  top: -6px;
+  right:0;
+  min-width: 14px;
+  height: 14px;
+  padding: 0 5px;
+  border-radius: 20px;
+  background: #a034fa;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* rules */
+.rules-card{
+  margin-top:20px;
+  padding:18px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(20,20,40,0.7);
+  color:white;
+  margin: 12px
+}
+
+.rules-title{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:14px;
+}
+
+.rules-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.rule-item{
+  display:flex;
+  font-size:14px;
+}
+
+.rule-number{
+  width:22px;
+  font-weight:600;
+}
+
+.rule-text{
+  flex:1;
+}

@@ -4,6 +4,9 @@
 
 <head>
 	<meta charset="utf-8">
+  <base href="/" />
+  <link rel="manifest" href="manifest.v2.webmanifest">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- CSS -->
@@ -15,13 +18,13 @@
 	<link rel="stylesheet" href="/assets/webfont/tabler-icons.min.css">
 
 	<!-- Favicons -->
-	<link rel="icon" type="image/png" href="/assets/icon/favicon-32x32.png" sizes="32x32">
-	<link rel="apple-touch-icon" href="/assets/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" href="/assets/img/favicon.svg" sizes="32x32">
+	<link rel="apple-touch-icon" href="/assets/img/favicon.svg">
 
 	<meta name="description" content="Arbitrage trading HTML Template">
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
-	<title>Centure – Arbitrage trading HTML Template</title>
+	<title>Ventora Investment</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
@@ -29,20 +32,12 @@
 
 <body class="body">
 
-  <!-- <div
-    class="pull-container"
-    (touchstart)="start($event)"
-    (touchmove)="move($event)"
-    (touchend)="end()">
-
-    <div class="pull-indicator" [style.height.px]="pullDistance">
-      ⬇ Pull to refresh
-    </div>
-
-    <ng-content></ng-content>
-  </div> -->
-
-  <!-- ios install guide odal -->
+  <style media="screen">
+  i.ti.ti-power
+    {
+      color: #9289e5;
+    }
+  </style>
   <div class="modal fade" id="iosPwaModal" tabindex="-1" aria-labelledby="iosPwaModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content shadow-lg border-0">
@@ -98,16 +93,35 @@
 
     <style media="screen">
 
+       body {
+         overflow-y: auto;   /* allow vertical scrolling */
+
+      }
 
     .app-container {
       padding-left: 16px;
       padding-right: 16px;
+      width: 100%;
+
+      width:100%;
+
+      /* min-height:100vh; */
+      height:auto;
+
+      overflow-x:hidden;
+      /* max-width: 420px;
+      min-height: 100vh;
+      background: #16142a;
+
+      box-shadow: 0 0 25px rgba(0,0,0,0.6); */
       /* padding-bottom: 90px; */
     }
 
     /* Bigger phones / tablets */
     @media (min-width: 480px) {
       .app-container {
+
+
         padding-left: 20px;
         padding-right: 20px;
       }
@@ -229,15 +243,19 @@
 
   </style>
 
-  <!-- <script type="text/javascript">
+  <div id="google_translate_element" style="display:none;"></div>
+
+    <script>
     function googleTranslateElementInit() {
-      new google.translate.TranslateElement(
-        { pageLanguage: 'en', includedLanguages: 'en,fr,de,es,ar,pt,hi,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE },
-        'google_translate_element'
-      );
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        autoDisplay: false
+      }, 'google_translate_element');
     }
-  </script> -->
-  <!-- <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+    </script>
+
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>

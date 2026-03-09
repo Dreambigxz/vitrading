@@ -2511,7 +2511,7 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .apool__label {
   font-style: normal;
@@ -3624,11 +3624,11 @@ body::-webkit-scrollbar-thumb {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   position: relative;
-  padding: 60px 60px 50px;
+  padding: 40px 20px 50px;
   z-index: 2;
 }
 .form--content {
-  max-width: 420px;
+  /* max-width: 420px; */
   margin-top: 0;
 }
 .form--profile {
@@ -4444,6 +4444,8 @@ body::-webkit-scrollbar-thumb {
   border-radius: 4px !important;
   cursor: pointer;
 }
+
+
 /*==============================
 	Animation
 ==============================*/

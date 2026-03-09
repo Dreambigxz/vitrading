@@ -22,12 +22,6 @@ import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar'
 export class ToastComponent {
 
 
-  constructor(
-    public snackBarRef: MatSnackBarRef<ToastComponent>,
-    @Inject(MAT_SNACK_BAR_DATA) public data: { message: any, status: any }
-  ) {}
-
-  closeToast() {
-    this.snackBarRef.dismiss();
-  }
+  message = ''
+  type = 'info'
 }

@@ -33,7 +33,10 @@ export class QuickNavService {
 
    modal:any
 
-   go(url: string, fragment?: string, queryParams?: any): void {
+   availableLang = {"English":"en", "French":'fr', "Spanish":'es' , "Portuguese (Brazil)":'pt', "Arabic":'ar', "Chinese":'zh-CN' }
+   langKeys = Object.keys(this.availableLang)
+
+   go(url: string,  queryParams?: any, fragment?: string,): void {
 
      this.router.navigate([url], {
        queryParams,
@@ -47,8 +50,8 @@ export class QuickNavService {
     this.toast.show({message,status})
   }
 
-  copy(item:any){
-    copyContent(this.toast,item)
+  copy(item:any, message:any="Data copied"){
+    copyContent(this.toast,item,message)
   }
 
   openTab(url:any){
@@ -75,5 +78,44 @@ export class QuickNavService {
 
     this.reqServerData.get(url+'/?showSpinner').subscribe()
 
+  }
+
+  changeLanguage(event: any) {
+
+    const lang = event.target.value;
+    const langVals = Object.values(this.availableLang)
+    let indexSelected = this.langKeys.indexOf(lang)
+
+    const interval = setInterval(() => {
+
+      const select:any = document.querySelector('.goog-te-combo');
+
+      if (select) {
+
+        select.value = langVals[indexSelected];
+        select.dispatchEvent(new Event('change'));
+
+        clearInterval(interval);
+      }
+
+    }, 500);
+  }
+
+  generatePassword(length: number = 12): string {
+
+    const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lower = 'abcdefghijklmnopqrstuvwxyz';
+    const numbers = '0123456789';
+    const symbols = '!@#$%^&*()_+~';
+
+    const allChars = upper + lower + numbers + symbols;
+
+    let password = '';
+
+    for (let i = 0; i < length; i++) {
+      password += allChars.charAt(Math.floor(Math.random() * allChars.length));
+    }
+
+    return password;
   }
 }
