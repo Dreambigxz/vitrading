@@ -10,7 +10,8 @@ import { timeout, catchError } from 'rxjs/operators';
 })
 export class MarketService {
 
-  baseUrl = 'http://127.0.0.1:8000/api';
+  // baseUrl = 'http://127.0.0.1:8000/api';
+  baseUrl = 'https://vi01-ee30f1c935bd.herokuapp.com/api'
 
   constructor(
     private http: HttpClient,
