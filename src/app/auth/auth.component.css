@@ -68,3 +68,7 @@ span{
     transform: translateY(0);
   }
 }
+
+select.notranslate.form__select.lang {
+    border: none;
+  }

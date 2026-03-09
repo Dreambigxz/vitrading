@@ -132,6 +132,7 @@ export class LuckyWheelComponent {
     this.quickNav.reqServerData.post('lucky-wheel/', {wheel_type, id:this.spinID})
     .subscribe((res:any)=>{
 
+
         const lucky_wheel_res = res.lucky_wheel_result
 
         const rewardIndex = lucky_wheel_res.index;
@@ -142,7 +143,9 @@ export class LuckyWheelComponent {
 
         setTimeout(()=>{
 
+
           this.isSpinning = false
+          this.setReward(this.wheel_type)
 
           const reward = lucky_wheel_res.reward
 

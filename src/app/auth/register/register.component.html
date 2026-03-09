@@ -11,6 +11,16 @@
         <!-- <span class="form__tagline">Ventora <br> Investment</span> -->
       </div>
 
+      <div class="form__group w-50">
+        <!-- <label for=""></label> -->
+        <select class="notranslate form__select lang" (change)="quickNav.changeLanguage($event)">
+          <option disabled='disabled' selected='selected'>Change language </option>
+          <option  *ngFor="let lang of quickNav.langKeys" [value]="lang">
+                {{ lang }}
+              </option>
+        </select>
+      </div>
+
       <div class="form__group">
         <input  formControlName="username" type="text" class="form__input" placeholder="Nick Name">
       </div>

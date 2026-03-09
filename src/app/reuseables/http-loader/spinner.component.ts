@@ -43,7 +43,7 @@ styles: [`
 
   /*  background: radial-gradient(circle at center,#1c1b2e,#0b0a16); */
 
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(1px);
     z-index: 2000;
 
     overflow:hidden;

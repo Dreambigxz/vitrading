@@ -4,12 +4,27 @@
 	<div class="section section--content">
 		<div class="section__content">
 			<!-- form -->
+
+			<!-- <div class="select-language">
+
+			</div> -->
+
       <form class="form form--content" [formGroup]="authService.formView.login" (ngSubmit)="authService.onSubmit(authService.formView.login,'login')">
 				<div class="form__logo-wrap">
 					<div  class="form__logo">
 						<img src="/assets/img/vi.svg" alt="">
 					</div>
 					<!-- <span class="form__tagline">Ventora <br> Investment</span> -->
+				</div>
+
+				<div class="form__group w-50">
+					<!-- <label for=""></label> -->
+					<select class="notranslate form__select lang" (change)="quickNav.changeLanguage($event)">
+						<option disabled='disabled' selected='selected'>Change language </option>
+						<option  *ngFor="let lang of quickNav.langKeys" [value]="lang">
+									{{ lang }}
+								</option>
+					</select>
 				</div>
 
 				<div class="form__group">
