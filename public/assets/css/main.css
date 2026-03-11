@@ -2599,7 +2599,7 @@ body::-webkit-scrollbar-thumb {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   position: relative;
-  padding: 50px 60px;
+  padding: 10px 20px;
   z-index: 2;
 }
 .profile .tab-content {
