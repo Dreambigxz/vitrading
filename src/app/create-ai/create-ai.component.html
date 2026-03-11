@@ -33,7 +33,7 @@
             <input
                 [(ngModel)]="trade_amount"
                 type="number"
-                class="apool__input"
+                class="form__input"
                 (keyup)="onAmountKeyup($event)"
 
                 >
@@ -43,15 +43,15 @@
           <div class="trade-properties">
             <div class="row-item">
               <span class="label">Minimum</span>
-              <span class="value minimum">${{plan?.min_investment|number:"2.2-2"}}</span>
+              <span class="value minimum">{{plan?.min_investment|currencyConverter:true}}</span>
             </div>
             <div *ngIf="totalReturn" class="row-item">
               <span class="label">Total Return</span>
-              <span class="value total">${{totalReturn}}</span>
+              <span class="value total">{{totalReturn|number:"1.2-2"}}</span>
             </div>
           </div>
 
-          <button (click)="handleSubmit()" [disabled]="!trade_amount||trade_amount<plan?.min_investment" class="apool__btn"  type="submit" >Invest</button>
+          <button  (click)="handleSubmit()" [disabled]="!trade_amount||trade_amount<min_investment " class="apool__btn"  type="submit" >Invest</button>
 
 
           <!-- design elements -->

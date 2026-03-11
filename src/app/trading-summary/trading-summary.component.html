@@ -9,22 +9,22 @@
 
     <!-- BALANCE -->
     <div class="balance">
-      <span class="amount notranslate">${{quickNav.storeData.store['PLANHISTORY']?.capital || 0 |number:"1.2-2"}}</span>
+      <span class="amount notranslate">{{quickNav.storeData.store['PLANHISTORY']?.capital || 0 |currencyConverter:true}}</span>
       <span class="percent notranslate">{{quickNav.storeData.store['PLANHISTORY']?.daily_profit || 0 }}%</span>
     </div>
 
     <hr>
 
     <!-- PROFITS -->
-    <div class="profits">
+    <div *ngIf="quickNav.storeData.store['PLANHISTORY']" class="profits">
       <div>
         <p class="label">Today's Profit</p>
-        <p class="value notranslate">${{quickNav.storeData.store['PLANHISTORY']?.todays_earning || 0 |number:"1.2-2"}}</p>
+        <p class="value notranslate">{{quickNav.storeData.store['PLANHISTORY']?.todays_earning || 0 |currencyConverter:true}}</p>
       </div>
 
       <div>
         <p class="label">Total Profit</p>
-        <p class="value notranslate">${{quickNav.storeData.store['PLANHISTORY']?.total_daily_earning || 0 |number:"1.2-2"}}</p>
+        <p class="value notranslate">{{quickNav.storeData.store['PLANHISTORY']?.total_daily_earning || 0 |currencyConverter:true}}</p>
       </div>
     </div>
 
@@ -54,7 +54,7 @@
       <!-- DESCRIPTION -->
       <p class="description">
         Automated trading uses computer programs and algorithms to execute strategies...
-        <span class="view-more">View More</span>
+        <!-- <span class="view-more">View More</span> -->
       </p>
     </div>
 

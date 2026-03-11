@@ -260,14 +260,13 @@ export class WalletService {
 
   handleSubmit(form:any,processor:any){
 
-    console.log({processor, form});
 
     form.patchValue({ payment_method: this.selectedData.code });
     form.patchValue({ origin: window.location.origin });
 
     this.formHandler.submitForm(form, processor, 'wallet/?showSpinner', true,  (res) => {
 
-        console.log({res});
+        // console.log({res});
 
 
     })

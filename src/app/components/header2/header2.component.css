@@ -40,10 +40,10 @@
 .title-area.snipcss-84QUn {
     position: sticky;
     z-index: 99;
-    top: 0;
+    top: 12px;
     color: #fff;
     background:#16142a;
     /* linear-gradient(180deg, #102537, #08131d); */
     padding: 5px 10px 7px;
-    margin-bottom: 1em;
+    margin-bottom: 1.7em;
 }

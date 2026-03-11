@@ -49,9 +49,6 @@ export const PostHttpInterceptor: HttpInterceptorFn = (req, next) => {
   const isPost = req.method === 'POST';
   const isGet  =  req.method === 'GET'
 
-  console.log('fetching...',req.url);
-  console.log("isCoinGECKO", req.url.includes("coingecko"));
-
   if (!req.url.includes('hideSpinner')&&isGet||isIOS()||req.url.includes("upload/")||isSafari) {
     !req.url.includes('hideSpinnerimportant')&&!req.url.includes("coingecko")?loaderService.show():0;
   }

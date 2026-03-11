@@ -28,7 +28,7 @@ export class QuickNavService {
    reqServerData = inject(RequestDataService)
    authService=inject(AuthService)
    toast=inject(ToastService)
-
+   confirmation = inject(ConfirmationDialogService)
    emptyDataUrl = 'assets/images/empty-box.png'
 
    modal:any

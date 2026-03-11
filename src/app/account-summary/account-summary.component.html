@@ -12,24 +12,24 @@
   </div>
 
   <div class="amount-row">
-    <span class="amount notranslate">${{quickNav.storeData.store['wallet']?.balance.new|number:"1.2-2"}}</span>
+    <span class="amount notranslate">{{quickNav.storeData.store['wallet']?.balance.new|currencyConverter:true}}</span>
     <!-- <span class="percent">0%</span> -->
   </div>
 
   <div *ngIf="quickNav.storeData.store['PLANHISTORY'] as my_plan" class="bottom-row">
     <div class="info">
       <span class="label">Today's Profit</span>
-      <span class="value notranslate">${{my_plan.todays_earning || 0|number:"1.2-2"}}</span>
+      <span class="value notranslate">{{my_plan.todays_earning || 0 | currencyConverter: true}}</span>
     </div>
 
     <div class="info">
       <span class="label">VI Return Rate</span>
-      <span class="value notranslate">%{{my_plan.daily_profit || 0|number:"1.2-2"}}</span>
+      <span class="value notranslate">%{{my_plan.daily_profit || 0|number:"1.1-1"}}</span>
     </div>
 
     <div class="info">
       <span class="label">Trading</span>
-      <span class="value notranslate">${{my_plan.capital || 0|number:"1.2-2"}}</span>
+      <span class="value notranslate">{{my_plan.capital || 0|currencyConverter:true}}</span>
     </div>
   </div>
 </div>

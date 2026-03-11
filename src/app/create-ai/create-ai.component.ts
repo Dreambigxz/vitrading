@@ -10,12 +10,13 @@ import {  FormsModule } from '@angular/forms';
 // import { ReactiveFormsModule, FormBuilder, Validators, FormsModule } from '@angular/forms';
 
 import { QuickNavService } from '../reuseables/services/quick-nav.service';
+import { CurrencyConverterPipe } from '../reuseables/pipes/currency-converter.pipe';
 
 @Component({
   selector: 'app-create-ai',
   imports: [
     CommonModule,Header2Component,SpinnerComponent,TradingSummaryComponent,
-    FormsModule, MenuBottomComponent
+    FormsModule, MenuBottomComponent,CurrencyConverterPipe
   ],
   templateUrl: './create-ai.component.html',
   styleUrl: './create-ai.component.css'
@@ -23,19 +24,22 @@ import { QuickNavService } from '../reuseables/services/quick-nav.service';
 export class CreateAiComponent {
 
   constructor(
-    public quickNav: QuickNavService
+    public quickNav: QuickNavService,
+    private currencyPipe: CurrencyConverterPipe
   ){}
 
   plan:any;
   plan_id:any=0
   trade_amount = 0
   totalReturn = 0
+  min_investment:any
 
   ngOnInit(){
     if (!this.quickNav.storeData.get('PLANS')) {
       this.quickNav.reqServerData.get('create-plan/').subscribe((res)=>{
-        // console.log({res});
+        console.log({res});
         this.setPlan()
+
       })
     }else{
       this.setPlan()
@@ -52,14 +56,11 @@ export class CreateAiComponent {
     this.plan_id = plan_id
     const PLANS = this.quickNav.storeData.get('PLANS')
     this.plan = PLANS[plan_id]
-
-    console.log({plan:this.plan});
     this.calculateReturn()
   }
 
   onAmountKeyup(event:any) {
     const amount = event.target.value;
-
     this.calculateReturn()
 
   }
@@ -78,7 +79,8 @@ export class CreateAiComponent {
     const totalProfit = dailyProfit * days;
 
     this.totalReturn = this.trade_amount + totalProfit;
-    console.log({totalReturn:this.totalReturn});
+
+    this.min_investment = this.currencyPipe.transform(this.plan.min_investment)
 
 
   }
@@ -86,12 +88,23 @@ export class CreateAiComponent {
   handleSubmit(){
 
     const data =  {plan_id:parseInt(this.plan_id),amount:this.trade_amount,processor:'create_plan'}
-    console.log("sending>>", data );
 
-    this.quickNav.reqServerData.post('create-plan/',data).subscribe((res)=>{
-      console.log({res});
+    this.quickNav.confirmation.confirmAction(
+      ()=>{
+        this.quickNav.reqServerData.post('create-plan/',data).subscribe((res)=>{
+          if (res.status==='success') {
+            this.quickNav.confirmation.confirmAction(
+              ()=>this.quickNav.go('my-plan'),
+              "Change page", "View my plans"
+            )
+          }
 
-    })
+        })
+      },
+      "Plan", `About to create <br>Plan:VI-${this.plan_id}<br>Amount:${this.currencyPipe.init_currency.symbol}${this.trade_amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>`
+
+    )
+
 
   }
 

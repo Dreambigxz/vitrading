@@ -21,22 +21,28 @@ export class InviteServices {
   get calculateTabData() {
 
     const ref = this.storeData.store['refDir'];
+    const active = ref.active
+    const total = ref.active
     const page = this.page;
     const level = this.level;
-
-    console.log({level});
-
 
     const data = {
       amount: 0,
       count: 0,
+      total: 0,
+      active: 0,
       deposit: { amount: 0, count: 0 },
       withdraw: { amount: 0, count: 0 },
       // users: [ ]
     };
 
     const getGen = (key: string, gen: number) => {
-      return ref?.[key]?.[`generation_${gen}`] || { count: 0, amount: 0 };
+      const res =  ref?.[key]?.[`generation_${gen}`] || { count: 0, amount: 0 };
+
+
+      data.total += ref.total[`generation_${gen}`]
+      data.active += ref.active[`generation_${gen}`]
+      return res
     };
 
     const sumGen = (key: string, target: any) => {
@@ -54,13 +60,14 @@ export class InviteServices {
 
       if (level === 'all') {
         sumGen('referral', data);
-        sumGen('rebate', data);
+        // sumGen('rebate', data);
+
       } else {
         const r = getGen('referral', gen);
-        const b = getGen('rebate', gen);
+        // const b = getGen('rebate', gen);
 
-        data.amount = (r.amount || 0) + (b.amount || 0);
-        data.count = (r.count || 0) + (b.count || 0);
+        data.amount = r.amount || 0;
+        data.count = r.count || 0
       }
     }
 

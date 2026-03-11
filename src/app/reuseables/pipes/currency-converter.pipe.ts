@@ -9,18 +9,26 @@ import { StoreDataService } from '../http-loader/store-data.service'; // ✅ adj
 })
 export class CurrencyConverterPipe implements PipeTransform {
   private storeData = inject(StoreDataService);
+  public wallet = this.storeData.get('wallet');
+  public init_currency = this.wallet?.init_currency
 
   transform(amount: number=0, showSymbol: boolean = false, another_currency=false,minimumFractionDigits:number=2): string {
 
-    const wallet = this.storeData.get('wallet');
-    let init_currency=wallet?.init_currency
-    if (another_currency) {
-      [init_currency] = wallet.init_currencies.filter((c:any)=>c.code===another_currency)
+    // const wallet = this.storeData.get('wallet');
+    // let
+    if (!this.wallet) {
+      this.wallet=this.storeData.get('wallet');
+      this.init_currency = this.wallet?.init_currency
     }
 
 
-    const rate = init_currency?.rate || 1;
-    const symbol = init_currency?.symbol || '';
+    if (another_currency) {
+      [this.init_currency] = this.wallet.init_currencies.filter((c:any)=>c.code===another_currency)
+    }
+
+
+    const rate = this.init_currency?.rate || 1;
+    const symbol = this.init_currency?.symbol || '';
     let converted;
 
     if (symbol==='trx') {
@@ -28,6 +36,7 @@ export class CurrencyConverterPipe implements PipeTransform {
     }else{
       converted = amount * rate;
     }
+
     return showSymbol
       ? `${symbol}${converted.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
       : converted.toFixed(minimumFractionDigits);

@@ -8,6 +8,7 @@ import { TradingSummaryComponent } from "../trading-summary/trading-summary.comp
 
 import { QuickNavService } from '../reuseables/services/quick-nav.service';
 import { CountdownPipe } from '../reuseables/pipes/countdown.pipe';
+import { CurrencyConverterPipe } from '../reuseables/pipes/currency-converter.pipe';
 
 @Component({
   selector: 'app-plans',
@@ -17,7 +18,8 @@ import { CountdownPipe } from '../reuseables/pipes/countdown.pipe';
     SpinnerComponent,
     MenuBottomComponent,
     TradingSummaryComponent,
-    CountdownPipe
+    CountdownPipe,
+    CurrencyConverterPipe
   ],
   templateUrl: './plans.component.html',
   styleUrl: './plans.component.css'
@@ -26,6 +28,7 @@ export class PlansComponent {
 
   activePlans:any[] = [];
   completedPlans:any[] = [];
+  history:any[] = [ ]
 
   constructor(public quickNav: QuickNavService) {}
 
@@ -46,9 +49,13 @@ export class PlansComponent {
   preparePlans(){
 
     const store = this.quickNav.storeData.store;
+    console.log({store});
 
     this.activePlans = (store['my_plans']?.active || []).map((p:any) => this.transformPlan(p));
     this.completedPlans = (store['my_plans']?.completed || []).map((p:any) => this.transformPlan(p));
+
+
+    this.history = store['history']
   }
 
   transformPlan(plan:any){

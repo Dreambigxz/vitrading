@@ -6,8 +6,9 @@
 
   <span class="dialog-separator"> | </span>
 
-  <span class="dialog-message">
-    {{ data.message || 'Are you sure you want to continue with this request?' }}
+  <span
+    class="dialog-message"
+    [innerHTML]="data.message || 'Are you sure you want to continue with this request?'">
   </span>
 
 </div>
