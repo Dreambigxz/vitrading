@@ -170,7 +170,13 @@ export class AuthService {
         // login user
         this.login(res.main.token,'login').subscribe(() => {
          const redirectUrl = localStorage['redirectUrl'] || '/';
-         this.router.navigate([redirectUrl]);
+         try {
+           this.router.navigate([redirectUrl]);
+
+         } catch (error) {
+           this.router.navigate(['/']);
+
+         }
          delete localStorage['redirectUrl'];
         });
       }

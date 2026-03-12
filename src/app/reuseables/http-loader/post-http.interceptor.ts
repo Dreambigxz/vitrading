@@ -1,6 +1,6 @@
 import { HttpInterceptorFn, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { finalize, tap } from 'rxjs';
+import { finalize, tap, timeout, TimeoutError } from 'rxjs';
 
 import { LoaderService } from './loader.service';
 import { StoreDataService } from './store-data.service';
@@ -59,14 +59,19 @@ export const PostHttpInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   return next(req).pipe(
+    timeout(19000), // ⏱ 15 seconds timeout
+
     tap({
       next: (event) => {
         if (event instanceof HttpResponse) {
           let body;
+
           if (event.body && typeof event.body === 'object' && !Array.isArray(event.body)) {
             body = event.body as { message?: string; status?: string; main?: Object; next_page?: any };
+
             body.message ? toast.show(body) : 0;
             body.main ? storeData.setMultiple(body.main) : 0;
+
             if (body.next_page) {
               const next_page_ = body.next_page.url;
               reqConfirmation?.confirmAction(
@@ -78,19 +83,38 @@ export const PostHttpInterceptor: HttpInterceptorFn = (req, next) => {
           }
         }
       },
+
       error: (err) => {
+
+        // ⏱ Timeout handling
+        if (err instanceof TimeoutError) {
+          dialog.open(StatusDialogComponent, {
+            data: {
+              title: 'Request Timeout',
+              message: 'Server is taking too long to respond. Please try again.',
+              status: 'error'
+            }
+          });
+          return;
+        }
+
         if (err.status === 401 || err.statusText === 'Unauthorized') {
           authService.logout(true);
         } else {
-          !req.url.includes('hideSpinner')?dialog.open(StatusDialogComponent, {
-            data: { title: 'Error', message: 'Reqest not reached, check internet and reload!', status: 'error' }
-          }):0;
+          !req.url.includes('hideSpinner') ? dialog.open(StatusDialogComponent, {
+            data: {
+              title: 'Error',
+              message: 'Request not reached, check internet and reload!',
+              status: 'error'
+            }
+          }) : 0;
         }
       }
     }),
+
     finalize(() => {
       loaderService.setLoadingButton(null);
-      !req.url.includes('hideSpinner')?loaderService.hide():0;
+      !req.url.includes('hideSpinner') ? loaderService.hide() : 0;
     })
   );
 };
