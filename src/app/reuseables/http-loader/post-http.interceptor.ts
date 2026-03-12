@@ -59,7 +59,7 @@ export const PostHttpInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   return next(req).pipe(
-    timeout(19000), // ⏱ 15 seconds timeout
+    timeout(39000), // ⏱ 15 seconds timeout
 
     tap({
       next: (event) => {

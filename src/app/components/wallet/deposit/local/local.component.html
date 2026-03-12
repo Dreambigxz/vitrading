@@ -15,7 +15,15 @@
 
         <div class="network-card">
           <div class="left">
-            <img [src]="makeFlag(curr.code)" alt="">
+            <div *ngIf="['XOF'].includes(curr.code)" class="">
+              <span>🌍</span>
+            </div>
+            <div *ngIf="!['XOF'].includes(curr.code)">
+              <img  [src]="makeFlag(curr.code)" alt="🌍">
+
+            </div>
+            <!-- <ng-template #showFlag>
+              </ng-template> -->
             <div class="text">
               <div class="code">{{ curr.code }}</div>
               <div class="sub">{{ curr.name}} Method</div>
