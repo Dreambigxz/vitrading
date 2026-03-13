@@ -30,6 +30,8 @@ export class PlansComponent {
   completedPlans:any[] = [];
   history:any[] = [ ]
 
+  page:string = 'active'
+
   constructor(public quickNav: QuickNavService) {}
 
   ngOnInit(){

@@ -12,7 +12,7 @@
         <!-- profile -->
         <div class="profile">
           <!-- tabs nav -->
-          <ul class="nav nav-tabs section__tabs section__tabs--left" id="section__profile-tabs1" role="tablist">
+          <!-- <ul class="nav nav-tabs section__tabs section__tabs--left" id="section__profile-tabs1" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="active" data-bs-toggle="tab" data-bs-target="#tab-f1" type="button" role="tab" aria-controls="tab-f1" aria-selected="true">Active</button>
             </li>
@@ -25,16 +25,42 @@
               <button data-bs-toggle="tab" data-bs-target="#tab-f3" type="button" role="tab" aria-controls="tab-f3" aria-selected="false">History</button>
             </li>
 
-            <!-- <li class="nav-item" role="presentation">
-              <button data-bs-toggle="tab" data-bs-target="#tab-f3" type="button" role="tab" aria-controls="tab-f3" aria-selected="false">New deposit</button>
-            </li> -->
-          </ul>
+          </ul> -->
+
+          <div class="sub-tabs">
+
+            <div
+              class="sub-tab"
+              [class.active]="page === 'active'"
+              (click)="page = 'active'">
+              Active
+            </div>
+
+            <div
+              class="sub-tab"
+              [class.active]="page === 'completed'"
+              (click)="page = 'completed'">
+              Completed
+            </div>
+
+
+            <div
+              class="sub-tab"
+              [class.active]="page === 'history'"
+              (click)="page = 'history'">
+              History
+            </div>
+
+
+
+          </div>
+
           <!-- end tabs nav -->
 
           <!-- tabs content -->
           <div class="tab-content">
             <!-- active -->
-            <div class="tab-pane fade show active" id="tab-f1" role="tabpanel">
+            <div *ngIf="page==='active'" class="tab"  role="tabpanel">
               <div class="row">
                 <div class="col-12">
                   <!-- deposit -->
@@ -123,7 +149,7 @@
             <!-- active -->
 
             <!-- closed -->
-            <div class="tab-pane fade" id="tab-f2" role="tabpanel">
+            <div *ngIf="page==='completed'" class="tab"  role="tabpanel">
               <div class="row">
                 <div class="col-12">
 
@@ -190,7 +216,7 @@
             <!-- end closed -->
 
             <!-- new -->
-            <div class="tab-pane fade" id="tab-f3" role="tabpanel">
+            <div *ngIf="page==='history'"  class="tab" role="tabpanel">
               <div class="row">
                 <div class="col-12">
                   <!-- <h3 class="profile__title">Invest in an arbitration pool</h3> -->
