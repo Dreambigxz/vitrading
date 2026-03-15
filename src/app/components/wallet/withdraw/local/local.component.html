@@ -3,7 +3,7 @@
   <div *ngIf="store['wallet']?.['hasPin'];else noPin"  class="hasPin">
 
 
-    <div *ngIf="!walletService.quickNav.storeData.store['withdraw']?.length;else pendingDeposit">
+    <div *ngIf="!walletService.quickNav.storeData.store['withdraw']?.length;else hasInvoice">
       <div class="network-options">
 
         <label *ngFor="let curr of walletService.getVisibleCurrencies()"
@@ -18,7 +18,13 @@
 
             <div class="network-card">
               <div class="left">
-                <img [src]="makeFlag(curr.code)" alt="">
+                <div *ngIf="['XOF'].includes(curr.code)" class="">
+                  <span>🌍</span>
+                </div>
+                <div *ngIf="!['XOF'].includes(curr.code)">
+                  <img  [src]="makeFlag(curr.code)" alt="🌍">
+
+                </div>
                 <div class="text">
                   <div class="code">{{ curr.code }}</div>
                   <div class="sub">{{ curr.name}} Method</div>
@@ -137,7 +143,7 @@
 
 
   </ng-template>
-  <ng-template #pendingDeposit>
+  <ng-template #hasInvoice>
     <app-withdraw-invoice></app-withdraw-invoice>
   </ng-template>
 
