@@ -43,10 +43,7 @@ export class MainComponent {
 
   ngOnInit(){
     if (!this.storeData.get('wallet')) {
-      this.reqServerData.get('dashboard/').subscribe((res)=>{
-        console.log({res});
-
-      })
+      this.reqServerData.get('dashboard/').subscribe()
     }
   }
 

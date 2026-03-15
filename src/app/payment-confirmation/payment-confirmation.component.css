@@ -148,7 +148,7 @@
   border:1px solid #262626;
   border-radius:12px;
   padding:18px;
-  max-width:420px;
+  /* max-width:420px; */
   color:#fff;
   font-family:Inter, sans-serif;
 }

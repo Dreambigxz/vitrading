@@ -51,7 +51,6 @@ export class PlansComponent {
   preparePlans(){
 
     const store = this.quickNav.storeData.store;
-    console.log({store});
 
     this.activePlans = (store['my_plans']?.active || []).map((p:any) => this.transformPlan(p));
     this.completedPlans = (store['my_plans']?.completed || []).map((p:any) => this.transformPlan(p));

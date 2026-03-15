@@ -56,7 +56,7 @@ export class AppComponent {
         let total_read = this.quickNav.storeData.get('total_read')
 
         if (this.quickNav.storeData.get('total_read')) {
-          this.quickNav.reqServerData.post('notifications/?hideSpinner', {total_read:this.quickNav.storeData.get('total_read'),processor:'save_read'}).subscribe()
+          this.quickNav.reqServerData.post('notifications/?hideSpinner', {total_read,processor:'save_read'}).subscribe(()=>this.quickNav.storeData.set('total_read',0))
         }
 
       });
@@ -68,7 +68,7 @@ export class AppComponent {
   unloadHandler(event: BeforeUnloadEvent) {
     // Prevent default reload/close
     if (this.quickNav.storeData.get('total_read')) {
-      this.quickNav.reqServerData.post('notifications/?hideSpinner', {total_read:this.quickNav.storeData.get('total_read'),processor:'save_read'}).subscribe()
+      this.quickNav.reqServerData.post('notifications/?hideSpinner', {total_read:this.quickNav.storeData.get('total_read'),processor:'save_read'}).subscribe(()=>this.quickNav.storeData.set('total_read',0))
     }
     // event.preventDefault();
 

@@ -1,5 +1,6 @@
-<app-noti-popup></app-noti-popup>
-
+<div *ngIf="storeData.store['notification']">
+  <app-noti-popup></app-noti-popup>
+</div>
 <header class="mobile-header header__content header">
   <div class="left">
     <img src="/assets/img/vi.svg" alt="Logo" class="logo" />

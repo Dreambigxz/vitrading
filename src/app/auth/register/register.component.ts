@@ -23,9 +23,9 @@ export class RegisterComponent {
     quickNav = inject(QuickNavService)
 
 
-    // async ngOnInit()   {
-    //   this.authService.setRefCode()
-    // }
+    async ngOnInit()   {
+      this.authService.setRefCode()
+    }
 
 
 }

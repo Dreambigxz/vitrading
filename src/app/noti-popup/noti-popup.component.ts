@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreDataService } from '../reuseables/http-loader/store-data.service';
+
 import { MomentAgoPipe } from '../reuseables/pipes/moment.pipe';
 import { Router } from '@angular/router';
+
+import { StoreDataService } from '../reuseables/http-loader/store-data.service';
+import { QuickNavService } from '../reuseables/services/quick-nav.service';
 
 @Component({
   selector: 'app-noti-popup',
@@ -14,7 +17,8 @@ export class NotiPopupComponent {
 
   constructor(
     private storeData: StoreDataService,
-    private router : Router
+    private router : Router,
+    private quickNav: QuickNavService
   ){}
   notifications: any//[] = [];   // all messages from backend
   unreadNotifications: any[] = [];
@@ -25,8 +29,6 @@ export class NotiPopupComponent {
 
     this.notifications =this.storeData.get('notification')
 
-    console.log({noti:this.notifications});
-
     this.unreadNotifications = this.notifications?.unseen//filter(n => !n.read);
 
     this.showNotifications();
@@ -35,30 +37,48 @@ export class NotiPopupComponent {
 
   showNotifications() {
 
-    if (this.unreadNotifications.length === 0) return;
+    if (!this.unreadNotifications?.length) return;
 
     let index = 0;
 
-    this.currentNotification = this.unreadNotifications[index];
-    index++;
+    if (!this.storeData.has('total_read')) {
+      this.storeData.set('total_read', 0);
+    }
 
-    const interval = setInterval(() => {
+    const showNext = () => {
 
       if (index >= this.unreadNotifications.length) {
-        clearInterval(interval);
         this.currentNotification = null;
+        clearInterval(interval);
         return;
       }
 
-      this.currentNotification = this.unreadNotifications[index];
-      index++;
+      this.currentNotification = this.unreadNotifications.pop()//[index];
+      // index++;
 
-    }, 8000); // every 5 seconds
+      this.storeData.store['total_read'] += 1;
+    };
+
+    // show first immediately
+    showNext();
+
+    const interval = setInterval(() => {
+      showNext();
+    }, 9000);
+
   }
+
+  saveUnreadNoti() {
+    if(!this.storeData.get('total_read'))return
+    this.quickNav.reqServerData.post('notifications/?hideSpinner', {total_read:this.storeData.get('total_read'),processor:'save_read'}).subscribe((res)=>{
+      this.quickNav.storeData.set('total_read',0)
+    })
+}
 
 
   closeNotif() {
     this.currentNotification = null;
+    this.saveUnreadNoti()
   }
 
 

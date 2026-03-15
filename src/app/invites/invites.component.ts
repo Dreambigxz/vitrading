@@ -64,7 +64,7 @@ export class InvitesComponent {
 
   makeRefLink() {
     const RefCode = this.quickNav.storeData.get('refDir')['RefCode'];
-    this.refLink = `${window.location.origin}/register?affiliate=${RefCode}`;
+    this.refLink = `${window.location.origin}/register?invite=${RefCode}`;
   }
 
   share(platform: string) {

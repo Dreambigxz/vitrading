@@ -18,6 +18,7 @@ import { WalletComponent } from "./wallet/wallet.component";
 import { InvitesComponent } from "./invites/invites.component";
 import { LuckyWheelComponent } from "./lucky-wheel/lucky-wheel.component";
 import { authGuard } from './reuseables/auth/auth.guard';
+import { AgentManagementComponent } from "./admin/agent-management/agent-management.component";
 
 export const routes: Routes = [
 
@@ -97,6 +98,13 @@ export const routes: Routes = [
       path: 'credit-agent',
       component: CreditAgentComponent,
       title: 'Credit-Agent',
+      canActivate: [authGuard]
+
+    },
+    {
+      path: 'agent-management',
+      component: AgentManagementComponent,
+      title: 'Agent-management',
       canActivate: [authGuard]
 
     },

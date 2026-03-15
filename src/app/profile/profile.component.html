@@ -85,7 +85,7 @@
 
               <!-- notification badge -->
               <span class="badge" *ngIf="notificationCount > 0">
-                {{quickNav.storeData.store['unreadNotification']}}
+                {{quickNav.storeData.store['notification']?.unseen?.length || 0}}
               </span>
             </div>
 
