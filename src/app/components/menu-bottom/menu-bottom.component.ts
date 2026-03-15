@@ -25,7 +25,7 @@ export class MenuBottomComponent {
       { label: 'Home', route: '/', key: '', path:"dashboard" },
       // { label: 'Market', route: '/matches', key: 'matches', path:"M7 10h5v5H7zM3 5h1V3h2v2h10V3h2v2h1a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM3 8v11h18V8H3z" },
       { label: 'VI', route: '/vi', key: 'vi', path:"chart-line" },
-      { label: 'Plan', route: '/my-plan', key: 'my-plan', path:"desktop" },
+      { label: 'Trade', route: '/my-plan', key: 'my-plan', path:"desktop" },
 
       // { label: 'Teams', route: '/', key: 'earnings', path:"users" },
       { label: 'Invite', route: '/invite', key: 'invite', path:"dollar" },

@@ -53,6 +53,9 @@ export class Header2Component {
     else if(segments.includes("inactive-users")){
       this.pageName='Inactive'
     }
+    else if(segments.includes("my-plan")){
+      this.pageName='Trade'
+    }
     else if(segments.includes("vi")||segments.includes("vi#createvi")){
       this.pageName='VI Quantitative Trading'
     }
