@@ -104,6 +104,7 @@ export class WalletService {
   selectedCryptoMethod : any = "USD"
 
   selectedData :any
+  editingAddress = false
 
   // amounts>><<<
   localAmount : any
@@ -267,6 +268,7 @@ export class WalletService {
     this.formHandler.submitForm(form, processor, 'wallet/?showSpinner', true,  (res) => {
 
         // console.log({res});
+        this.editingAddress=false
 
 
     })

@@ -20,6 +20,7 @@ export class LocalComponent {
 
   walletService = inject(WalletService);
   transactionPin:any
+  editing=false
 
   makeFlag(code:any){
     return `https://flagsapi.com/${code.slice(0,2)}/flat/64.png`

@@ -35,8 +35,11 @@ html, body {
   margin-top: 40px;
   // font-family: Inter, system-ui, sans-serif;
 }
-.text-right{
-    float: inline-end;
+.text-right {
+    right: 0;
+    margin-right: 12px;
+    display: flex;
+    position: absolute;
 }
 .space-between{
   justify-content:space-between;

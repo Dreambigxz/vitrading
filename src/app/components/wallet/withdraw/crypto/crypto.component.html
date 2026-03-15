@@ -15,7 +15,7 @@
         </label>
       </div>
 
-      <div *ngIf="store['wallet']?.saved_add;else noSavedAdd" class="mt-5">
+      <div *ngIf="store['wallet']?.saved_add&&!walletService.editingAddress;else noSavedAdd;else noSavedAdd" class="mt-5">
 
         <div *ngIf="store['wallet'].saved_add[0] as add">
           <div class="qr-wrapper">
@@ -57,6 +57,8 @@
                 <div class=" form-group mt-4">
                   <div class="apool__group">
                     <label for="pool1" class="apool__label">Receive by</label>
+                    <span (click)="walletService.editingAddress=true" class="text-right">Edit <i class="fa fa-edit"></i></span>
+
                   <select class="form__input" formControlName="saved_method_id">
                     <option *ngFor="let add of store['wallet'].saved_add;let i=index">
                       {{add.account_number|truncateCenter:20}}
@@ -85,7 +87,12 @@
    <div *ngIf="walletService.formView.crypto.payment_info as form" class="mt-4">
      <form [formGroup]="form" (ngSubmit)="walletService.handleSubmit(form, 'create_withdraw')" class="form form--content crypto-acc" >
 
-       <p><strong>Save your payment address!</strong></p>
+       <p *ngIf="!store['wallet']?.saved_add"><strong>Save your payment address!</strong></p>
+       <div *ngIf="store['wallet']?.saved_add" class="">
+         <span (click)='walletService.editingAddress=false' class="text-right text-main"><i class="fa fa-close"></i></span>
+         <p ><strong>Edit payment adddress!</strong></p>
+
+       </div>
 
 
        <div class="form__group">

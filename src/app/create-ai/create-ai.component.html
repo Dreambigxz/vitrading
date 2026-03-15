@@ -16,8 +16,13 @@
         <!-- arbitrage pool -->
         <div id="createvi" class="apool mt-2">
           <!-- <p class="text-white">Create Vi Trading</p> -->
+          <div class="text-center text-white" *ngIf="quickNav.storeData.store['wallet'] as walletData ">
+            <!-- <span class="text-center text-white">BAL: 400</span> -->
+            <span class="amount">
+              Balance: <strong>{{walletData.balance.new | currencyConverter :true}}</strong>
+            </span>
 
-          BAL: 400
+          </div>
           <div *ngIf="quickNav.storeData.store['PLANS']"  class="apool__group mt-4">
             <label for="pool1" class="apool__label">Duration</label>
             <select class="form__select" (change)="onPlanChange($event)">

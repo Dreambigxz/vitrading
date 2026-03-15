@@ -67,7 +67,8 @@ export class CreateAiComponent {
 
   calculateReturn() {
 
-    if(!this.plan || !this.trade_amount || this.trade_amount < this.plan.min_investment) {
+    if(!this.plan ) {
+    // if(!this.plan || !this.trade_amount || this.trade_amount < this.plan.min_investment) {
       this.totalReturn = 0;
       return;
     }

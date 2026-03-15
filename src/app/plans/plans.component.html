@@ -11,21 +11,7 @@
       <div class="col-12">
         <!-- profile -->
         <div class="profile">
-          <!-- tabs nav -->
-          <!-- <ul class="nav nav-tabs section__tabs section__tabs--left" id="section__profile-tabs1" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="active" data-bs-toggle="tab" data-bs-target="#tab-f1" type="button" role="tab" aria-controls="tab-f1" aria-selected="true">Active</button>
-            </li>
 
-            <li class="nav-item" role="presentation">
-              <button data-bs-toggle="tab" data-bs-target="#tab-f2" type="button" role="tab" aria-controls="tab-f2" aria-selected="false">Completed</button>
-            </li>
-
-            <li class="nav-item" role="presentation">
-              <button data-bs-toggle="tab" data-bs-target="#tab-f3" type="button" role="tab" aria-controls="tab-f3" aria-selected="false">History</button>
-            </li>
-
-          </ul> -->
 
           <div class="sub-tabs">
 
@@ -134,6 +120,17 @@
                         <span>Total Return</span>
                         <p class="">{{info[3]|currencyConverter:true}}</p>
                       </div>
+
+                       <div
+                          *ngIf='canCloseTrade(plan.created_at)|countdown|async as time'
+                          class="close "
+                          (click)="closeTrade(plan.id)"
+                          >
+                          <button type="button" class="close-trade-btn">
+                            Close Trade <br>
+                            {{time}}
+                          </button>
+                        </div>
                     </div>
 
                   </div>
@@ -241,7 +238,7 @@
 
                           <td>
                             <span class="ref">
-                              VI{{ row.plan_id ++1 || 'N/A' }}
+                              VI-{{ row.plan_id ++1 || 'N/A' }}
                             </span>
                           </td>
 

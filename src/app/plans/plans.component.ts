@@ -140,4 +140,23 @@ export class PlansComponent {
     let data = this.calculateReturn(plan,parseFloat(amount))
     return data
   }
+
+  canCloseTrade(created_at_str:any, minutes:number=5){
+
+    const expiry = new Date(created_at_str)
+    expiry.setMinutes(expiry.getMinutes()+ minutes)
+
+    return expiry
+  }
+
+  closeTrade(plan_id:any){
+
+    this.quickNav.confirmation.confirmAction(
+      ()=>{
+        this.quickNav.reqServerData.post('my-plan/',{processor:'cancel_plan',plan_id}).subscribe()
+      },
+      "Close trade", `Are you sure ?`
+
+    )
+  }
 }
