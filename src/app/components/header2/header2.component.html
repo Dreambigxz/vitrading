@@ -1,3 +1,9 @@
+
+
+<div *ngIf="storeData.store['notification']&&!storeData.get('notification')&&pageName!=='notifications'">
+  <app-noti-popup></app-noti-popup>
+</div>
+
 <div class="title-area">
 
   <div class="wallet-header">
