@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreDataService } from '../reuseables/http-loader/store-data.service';
 import { MomentAgoPipe } from '../reuseables/pipes/moment.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-noti-popup',
@@ -12,7 +13,8 @@ import { MomentAgoPipe } from '../reuseables/pipes/moment.pipe';
 export class NotiPopupComponent {
 
   constructor(
-    private storeData: StoreDataService
+    private storeData: StoreDataService,
+    private router : Router
   ){}
   notifications: any//[] = [];   // all messages from backend
   unreadNotifications: any[] = [];
@@ -65,7 +67,7 @@ export class NotiPopupComponent {
     notification.read = true;
 
     // open message page
-    // this.router.navigate(['/messages', notification.id]);
+    this.router.navigate(['/notifications']);
 
   }
 
