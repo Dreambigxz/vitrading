@@ -46,7 +46,7 @@ export class AuthService {
       email:["", [Validators.required]],
       password:["", [Validators.required, Validators.minLength(6)]],
       confirm_password:["", [Validators.required]],
-      RefCode:["" , [Validators.required]],
+      RefCode:[""],
 
     },{
       validators: this.passwordMatchValidator
