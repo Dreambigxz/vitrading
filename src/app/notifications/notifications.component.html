@@ -1,58 +1,81 @@
 <app-header2></app-header2>
 <app-spinner></app-spinner>
 
-<div *ngIf="storeData.store['notification'] as data" class="notifications-container">
 
-  <!-- Unread Notifications -->
-  <h5 class="section-title">New messages</h5>
-  <div *ngIf="data.unseen.length > 0; else noUnread" class="notification-list">
-    <div *ngFor="let note of data.unseen; let i = index"
-         class="notification-card unread"
-         >
+<div *ngIf="storeData.store['notification'] as notifications" class="notif-page">
 
-      <div class="notification-icon">
-        <i class="ti ti-bell"></i>
-      </div>
 
-      <div class="notification-details">
-        <div class="header-row">
-          <h6>{{ note.header }}</h6>
-          <span class="timestamp">{{ note.timestamp | momentAgo }}</span>
-        </div>
-        <p class="message">{{ note.message }}</p>
-      </div>
+  <!-- Tabs -->
+  <div class="notif-tabs">
+    <button
+      [class.active]="activeTab==='unseen'"
+      (click)="activeTab='unseen'">
+      Unread ({{notifications.unseen?.length || 0}})
+    </button>
 
-      <button class="btn-read" (click)="markAsRead(note,i)">
-        <i class="ti ti-check"></i> Read
-      </button>
-
-    </div>
+    <button
+      [class.active]="activeTab==='seen'"
+      (click)="activeTab='seen'">
+      Seen ({{notifications.seen?.length || 0}})
+    </button>
   </div>
 
-  <ng-template #noUnread>
-    <p class="empty-text">No unread notifications 🎉</p>
-  </ng-template>
 
-  <hr class="divider">
+  <!-- UNREAD -->
+  <div *ngIf="activeTab==='unseen'" class="notif-list">
 
-  <!-- Seen Notifications -->
-  <h5 class="section-title">💬 Read messages</h5>
-  <div class="notification-list">
-    <div *ngFor="let note of data.seen" class="notification-card seen">
+    <div class="notif-card" *ngFor="let n of notifications.unseen">
 
-      <div class="notification-icon">
-        <i class="ti ti-message-circle"></i>
+      <div class="notif-icon">
+        <i class="fa fa-message"></i>
       </div>
 
-      <div class="notification-details">
-        <div class="header-row">
-          <h6>{{ note.header }}</h6>
-          <span class="timestamp">{{ note.timestamp | momentAgo }}</span>
+      <div class="notif-content">
+
+        <div class="notif-top">
+          <span class="notif-title">{{n.header}}</span>
+          <span class="notif-time">{{n.timestamp | date:'short'}}</span>
         </div>
-        <p class="message">{{ note.message }}</p>
+
+        <div class="notif-message" [innerHTML]="n.message"></div>
+
+        <div class="notif-help" *ngIf="n.help">
+          {{n.help}}
+        </div>
+
       </div>
 
     </div>
+
+  </div>
+
+
+  <!-- SEEN -->
+  <div *ngIf="activeTab==='seen'" class="notif-list">
+
+    <div class="notif-card seen" *ngFor="let n of notifications.seen">
+
+      <div class="notif-icon">
+      <i class="fa fa-message"></i>
+      </div>
+
+      <div class="notif-content">
+
+        <div class="notif-top">
+          <span class="notif-title">{{n.header}}</span>
+          <span class="notif-time">{{n.timestamp | date:'short'}}</span>
+        </div>
+
+        <div class="notif-message" [innerHTML]="n.message"></div>
+
+        <div class="notif-help" *ngIf="n.help">
+          {{n.help}}
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
 </div>

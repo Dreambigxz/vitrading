@@ -1,3 +1,4 @@
+
 .invoice-container {
   /* padding: 4px; */
   max-width: 600px;
@@ -34,6 +35,25 @@ h5{
   margin-bottom: 10px;
   font-size: 14px;
 }
+.bank-tabs{
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.bank-tabs button{
+  padding:8px 14px;
+  border:none;
+  background:#eee;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.bank-tabs button.active{
+  background:#2b7cff;
+  color:white;
+}
+
 .time strong {
     font-size: 12px;
     color: #999;

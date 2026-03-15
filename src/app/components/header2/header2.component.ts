@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { CurrencyConverterPipe } from '../../reuseables/pipes/currency-converter.pipe';
 import { StoreDataService } from '../../reuseables/http-loader/store-data.service';
-import { QuickNotificationsComponent } from "../quick-notifications/quick-notifications.component";
+// import { QuickNot ificationsComponent } from "../quick-notifications/quick-notifications.component";
 import { QuickNavService } from '../../reuseables/services/quick-nav.service';
 
+import { NotiPopupComponent } from "../../noti-popup/noti-popup.component";
 import { Router, RouterLink, NavigationEnd, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-header2',
-  imports: [CommonModule,CurrencyConverterPipe,QuickNotificationsComponent],
+  imports: [CommonModule,CurrencyConverterPipe,NotiPopupComponent],
   templateUrl: './header2.component.html',
   styleUrl: './header2.component.css'
 })
@@ -52,7 +53,7 @@ export class Header2Component {
     else if(segments.includes("inactive-users")){
       this.pageName='Inactive'
     }
-    else if(segments.includes("vi")){
+    else if(segments.includes("vi")||segments.includes("vi#createvi")){
       this.pageName='VI Quantitative Trading'
     }
     else{

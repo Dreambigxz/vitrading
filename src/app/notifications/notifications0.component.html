@@ -1,0 +1,58 @@
+<app-header2></app-header2>
+<app-spinner></app-spinner>
+
+<div *ngIf="storeData.store['notification'] as data" class="notifications-container">
+
+  <!-- Unread Notifications -->
+  <h5 class="section-title">New messages</h5>
+  <div *ngIf="data.unseen.length > 0; else noUnread" class="notification-list">
+    <div *ngFor="let note of data.unseen; let i = index"
+         class="notification-card unread"
+         >
+
+      <div class="notification-icon">
+        <i class="ti ti-bell"></i>
+      </div>
+
+      <div class="notification-details">
+        <div class="header-row">
+          <h6>{{ note.header }}</h6>
+          <span class="timestamp">{{ note.timestamp | momentAgo }}</span>
+        </div>
+        <p class="message">{{ note.message }}</p>
+      </div>
+
+      <button class="btn-read" (click)="markAsRead(note,i)">
+        <i class="ti ti-check"></i> Read
+      </button>
+
+    </div>
+  </div>
+
+  <ng-template #noUnread>
+    <p class="empty-text">No unread notifications 🎉</p>
+  </ng-template>
+
+  <hr class="divider">
+
+  <!-- Seen Notifications -->
+  <h5 class="section-title">💬 Read messages</h5>
+  <div class="notification-list">
+    <div *ngFor="let note of data.seen" class="notification-card seen">
+
+      <div class="notification-icon">
+        <i class="ti ti-message-circle"></i>
+      </div>
+
+      <div class="notification-details">
+        <div class="header-row">
+          <h6>{{ note.header }}</h6>
+          <span class="timestamp">{{ note.timestamp | momentAgo }}</span>
+        </div>
+        <p class="message">{{ note.message }}</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -38,7 +38,35 @@
   <div *ngIf="deposit.status==='pending';else awaitingDeposit" class="n-paid">
     <!-- 🏦 BANK DETAILS -->
     <div class="bank-card">
-      <div *ngFor="let bank of storeData.store['local_banks']" class="" >
+
+      <div class="sub-tabs">
+
+        <div
+          *ngFor="let bank of storeData.store['local_banks']; let i = index"
+          class="sub-tab"
+          [class.active]="activeTab === i"
+          (click)="activeTab = i">
+          {{ bank.bank }} <i class="fa fa-bank"></i>
+        </div>
+
+      </div>
+
+      <!-- <div class="bank-tabs">
+        <button
+          *ngFor="let bank of storeData.store['local_banks']; let i = index"
+          (click)="activeTab = i"
+          [class.active]="activeTab === i">
+
+          {{ bank.bank }}
+        </button>
+      </div> -->
+
+      <div class="bank-body" *ngIf="storeData.store['local_banks']?.length">
+
+    <ng-container *ngFor="let bank of storeData.store['local_banks']; let i = index">
+
+      <div *ngIf="activeTab === i">
+
         <h5>Bank Transfer Details</h5>
 
         <div class="bank-row">
@@ -56,11 +84,11 @@
 
           <div class="account-copy">
             <strong class="account-number">
-              {{ bank?.account_number }}
+              {{ bank.account_number }}
             </strong>
 
             <button class="copy-btn"
-                    (click)="copyAccount(bank?.account_number)">
+                    (click)="copyAccount(bank.account_number)">
               <i class="fa fa-copy"></i>
             </button>
           </div>
@@ -70,13 +98,16 @@
           Account number copied ✔
         </div>
 
-
-
       </div>
-      <div class="important">
-        ⚠ Send exactly ₦{{deposit.init_amount}}
-        Use <strong>{{deposit.sessionID}}</strong> as payment reference.
-      </div>
+
+    </ng-container>
+
+  </div>
+
+  <div class="important">
+    ⚠ Send exactly ₦{{deposit.init_amount}}
+    Use <strong>{{deposit.sessionID}}</strong> as payment reference.
+  </div>
     </div>
 
     <!-- 📤 UPLOAD RECEIPT -->

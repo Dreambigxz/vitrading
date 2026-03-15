@@ -1,49 +1,129 @@
-/* .header-title{
-  text-transform: capitalize;
+.title-area{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  padding:14px 16px;
+
+  background:#19152f;
+
+  /* glass effect */
+  backdrop-filter:blur(10px);
+
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  margin-bottom: 20px;
 }
 
-.back-page-btn i{
-  background: transparent;
-  color: #4c677a;
-  width: 30px;
-  height: 30px;
-  border-radius: 30px;
-  padding: 3px;
-  font-size: 20px;
+/* header layout */
+
+.wallet-header{
+  position:sticky;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color: #fff;
 }
 
-.balance__data.text-deem.notranslate {
-    position: relative;
-} */
+/* left */
 
-/* Header */
-.wallet-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+.header-left{
+  z-index:2;
 }
 
-.back-btn {
-  position: absolute;
-  left: 0;
-  font-size: 18px;
-  cursor: pointer;
+.back-btn{
+  width:38px;
+  height:38px;
+
+  border:none;
+  border-radius:10px;
+
+  /* background:#a034fa; */
+  color:white;
+
+  font-size:18px;
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  /* box-shadow:0 4px 12px rgba(160,52,250,0.4); */
 }
 
-.wallet-header h2, h5 {
-  font-weight: 600;
-  font-size: 15px;
+/* center */
+
+.header-title{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+
+  font-size:16px;
+  font-weight:600;
+  color:white;
 }
 
+/* right */
 
-.title-area.snipcss-84QUn {
-    position: sticky;
-    z-index: 99;
-    top: 12px;
-    color: #fff;
-    background:#16142a;
-    /* linear-gradient(180deg, #102537, #08131d); */
-    padding: 5px 10px 7px;
-    margin-bottom: 1.7em;
+.header-right{
+  z-index:2;
+}
+
+.balance{
+  display:flex;
+  align-items:center;
+  gap:4px;
+
+  padding:6px 10px;
+
+  border-radius:10px;
+
+  background:linear-gradient(
+    150deg,
+    rgba(255,255,255,0.03) 0%,
+    rgba(255,255,255,0.01) 100%
+  );
+
+  border:1px solid rgba(255,255,255,0.05);
+
+  font-size:13px;
+  font-weight: 900;
+}
+
+.currency{
+  color:#a034fa;
+  font-weight:600;
+}
+
+.amount{
+  color:white;
+  font-weight:600;
+}
+
+/* dashboard link */
+
+.dashboard-link{
+  margin-top:10px;
+  font-size:13px;
+  color:#9b8cff;
+
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  cursor:pointer;
+}
+
+/* mobile */
+
+@media (max-width:600px){
+
+  .header-title{
+    font-size:15px;
+  }
+
+  .balance{
+    font-size:12px;
+    padding:5px 8px;
+  }
+
 }

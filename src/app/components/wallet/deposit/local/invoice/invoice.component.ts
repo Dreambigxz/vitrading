@@ -23,6 +23,8 @@ export class InvoiceComponent {
   sendersName:any
   selectedFile:any
   copied = false;
+  activeTab = 0;
+
 
   copyAccount(account: string) {
     if (!account) return;

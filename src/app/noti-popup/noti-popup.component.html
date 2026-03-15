@@ -1,0 +1,27 @@
+<div class="ios-notification" *ngIf="currentNotification">
+
+  <div class="ios-header">
+    <!-- <img src="/assets/logo.png" class="ios-avatar"> -->
+
+    <i class="fa fa-message"></i>
+
+    <div class="ios-title">
+      <div class="app-name">{{currentNotification.header}}</div>
+      <div class="time">{{currentNotification.timestamp|momentAgo}}</div>
+    </div>
+
+    <button class="ios-close" (click)="closeNotif()">×</button>
+  </div>
+
+  <div class="ios-message"
+    [innerHTML]="currentNotification.message">
+  </div>
+
+  <div class="ios-actions">
+    <button class="read-more"
+            (click)="readMore(currentNotification)">
+      Read More
+    </button>
+  </div>
+
+</div>

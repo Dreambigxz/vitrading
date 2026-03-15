@@ -19,7 +19,8 @@ export class NotificationsComponent {
 
   reqServerData = inject(RequestDataService);
   storeData = inject(StoreDataService);
-  history = window.history
+
+  activeTab = 'unseen';
 
   ngOnInit(){
 
