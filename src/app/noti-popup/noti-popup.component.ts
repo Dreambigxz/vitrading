@@ -31,7 +31,10 @@ export class NotiPopupComponent {
 
     this.unreadNotifications = this.notifications?.unseen//filter(n => !n.read);
 
-    this.showNotifications();
+    setTimeout(() => {
+      this.showNotifications();
+    }, 5000);
+
   }
 
 

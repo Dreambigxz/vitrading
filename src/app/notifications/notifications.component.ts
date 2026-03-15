@@ -25,7 +25,10 @@ export class NotificationsComponent {
   ngOnInit(){
 
     if (!this.storeData.get('notification')||!this.storeData.get('notification').seen) {
-      this.reqServerData.get('notifications/').subscribe()
+      this.reqServerData.get('notifications/').subscribe((res)=>{
+        console.log({res});
+
+      })
     }
 
   }
