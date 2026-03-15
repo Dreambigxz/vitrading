@@ -94,10 +94,11 @@ export class CreateAiComponent {
       ()=>{
         this.quickNav.reqServerData.post('create-plan/',data).subscribe((res)=>{
           if (res.status==='success') {
-            this.quickNav.confirmation.confirmAction(
-              ()=>this.quickNav.go('my-plan'),
-              "Change page", "View my plans"
-            )
+            this.quickNav.go('my-plan')
+            // this.quickNav.confirmation.confirmAction(
+            //   ()=>this.quickNav.go('my-plan'),
+            //   "Change page", "View my plans"
+            // )
           }
 
         })
