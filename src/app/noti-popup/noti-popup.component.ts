@@ -58,6 +58,7 @@ export class NotiPopupComponent {
 
       this.currentNotification = this.unreadNotifications.pop()//[index];
       // index++;
+      this.notifications?.unseen.pop()
 
       this.storeData.store['total_read'] += 1;
     };
@@ -73,7 +74,7 @@ export class NotiPopupComponent {
 
   saveUnreadNoti() {
     if(!this.storeData.get('total_read'))return
-    this.quickNav.reqServerData.post('notifications/?hideSpinner', {total_read:this.storeData.get('total_read'),processor:'save_read'}).subscribe((res)=>{
+    this.quickNav.reqServerData.post('notifications/?hideSpinner&hideSpinnerimportant', {total_read:this.storeData.get('total_read'),processor:'save_read'}).subscribe((res)=>{
       this.quickNav.storeData.set('total_read',0)
     })
 }
